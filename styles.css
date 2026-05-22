@@ -931,6 +931,40 @@ body {
 .featured-btn:hover {
     background: var(--accent-light);
 }
+    
+.package-btn1 {
+
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.package-btn1:hover {
+    background: white;
+    color: var(--primary-dark);
+}
+
+.package-btn {
+
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.package-btn:hover {
+    background: white;
+    color: var(--primary-dark);
+}
 
 /* Modal Styles */
 .modal {
