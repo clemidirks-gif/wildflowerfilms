@@ -126,18 +126,26 @@ body {
     overflow: hidden;
 }
 
-.hero-video iframe {
+.hero-video video {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 120vw;
     height: 120vh;
     transform: translate(-50%, -50%) scale(1.1);
+    object-fit: cover;
+
     border: none;
     pointer-events: none;
 
-    /* IMPORTANT: kills visual flicker perception */
+    /* removes flicker + keeps cinematic feel */
     filter: brightness(1.05) contrast(1.05);
+}
+
+@keyframes heroFade {
+    to {
+        opacity: 1;
+    }
 }
 
 .hero-overlay {
