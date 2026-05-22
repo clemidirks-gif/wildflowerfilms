@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildflower Films - Cinematic Moments Captured</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo-wrapper">
+            <div class="logo">
+                <img src="images/wildflower-films-logo.png" alt="Wildflower Films Logo">
+            </div>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- HERO (UNCHANGED) -->
+<section class="hero">
+
+    <div class="hero-video">
+        <iframe 
+            src="https://www.youtube.com/embed/eLjrJoZIfiY?autoplay=1&mute=1&loop=1&playlist=eLjrJoZIfiY&controls=0&modestbranding=1&rel=0"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <h1 class="hero-title">Wildflower Films</h1>
+        <p class="hero-subtitle">“A love once lived deserves to be captured as timelessly as it was felt.”</p>
+        <button class="cta-button">View Portfolio</button>
+    </div>
+
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="portfolio">
+    <h2 class="section-title">Featured Work</h2>
+
+    <div class="portfolio-grid">
+
+        <!-- CARD 1 -->
+<div class="portfolio-card" data-scroll>
+
+    <div class="portfolio-image">
+        <iframe 
+            src="https://www.youtube.com/embed/9klbhuCnl7A"
+            allowfullscreen>
+        </iframe>
+
+        <div class="portfolio-overlay">
+            <button class="play-button">▶</button>
+        </div>
+    </div>
+
+    <h3>Trudine & Kirwan</h3>
+    <p>Stellenbosch, Cape Town</p>
+</div>
+
+        <!-- CARD 2 -->
+<div class="portfolio-card" data-scroll>
+
+    <div class="portfolio-image">
+        <iframe 
+            src="https://www.youtube.com/embed/u62RRo9Hq3E"
+            allowfullscreen>
+        </iframe>
+
+        <div class="portfolio-overlay">
+            <button class="play-button">▶</button>
+        </div>
+    </div>
+
+    <h3>Muhammed & Marelize</h3>
+    <p>Fort Simon, Stellenbosch</p>
+</div>
+
+                <!-- CARD 3 -->
+<div class="portfolio-card" data-scroll>
+
+    <div class="portfolio-image">
+        <iframe 
+            src="https://www.youtube.com/embed/LIhYAqSuMgg"
+            allowfullscreen>
+        </iframe>
+
+        <div class="portfolio-overlay">
+            <button class="play-button">▶</button>
+        </div>
+    </div>
+
+    <h3>Robyn & Dean</h3>
+    <p>Stellenbosch, Cape Town</p>
+</div>
+
+    </div>
+</section>
+
+
+<section id="packages" class="packages">
+    <h2 class="section-title">Wedding Packages</h2>
+
+    <div class="packages-container">
+
+        <!-- ESSENTIAL -->
+        <div class="package-card" data-scroll>
+
+            <div class="package-badge">Starter</div>
+
+            <h3>Essential</h3>
+
+            <p class="package-price">R6,500</p>
+
+            <ul class="package-features">
+                <li>6 Hours Coverage</li>
+                <li>Edited Highlights Video</li>
+                <li>Digital Delivery</li>
+                <li>Drone Footage</li>
+            </ul>
+
+            <div class="terms-trigger">
+                <span>T's & C's Apply</span>
+
+                <button
+                    type="button"
+                    class="terms-info-btn"
+                    onclick="openTerms('essentialTerms')">
+                    i
+                </button>
+            </div>
+
+            <button class="package-btn1" onclick="bookPackage('Essential', 2500)">
+                Book Now
+            </button>
+
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="package-card featured" data-scroll>
+
+            <div class="package-badge featured-badge">Most Popular</div>
+
+            <h3>Premium</h3>
+
+            <p class="package-price">R8,000</p>
+
+            <ul class="package-features">
+                <li>8 Hours Coverage</li>
+                <li>Full Wedding Film</li>
+                <li>Highlight Reel</li>
+                <li>Digital Delivery</li>
+                <li>Drone Footage</li>
+            </ul>
+
+            <div class="terms-trigger">
+                <span>T's & C's Apply</span>
+
+                <button
+                    type="button"
+                    class="terms-info-btn"
+                    onclick="openTerms('premiumTerms')">
+                    i
+                </button>
+            </div>
+
+            <button class="package-btn featured-btn" onclick="bookPackage('Premium', 4500)">
+                Book Now
+            </button>
+
+        </div>
+
+        <!-- CINEMATIC -->
+        <div class="package-card" data-scroll>
+
+            <div class="package-badge">Luxury</div>
+
+            <h3>Cinematic</h3>
+
+            <p class="package-price">R10,500</p>
+
+            <ul class="package-features">
+                <li>Full Day Coverage</li>
+                <li>Full Wedding Film</li>
+                <li>Highlight Reel</li>
+                <li>Digital Delivery</li>
+                <li>Drone Footage</li>
+            </ul>
+
+            <div class="terms-trigger">
+                <span>T's & C's Apply</span>
+
+                <button
+                    type="button"
+                    class="terms-info-btn"
+                    onclick="openTerms('cinematicTerms')">
+                    i
+                </button>
+            </div>
+
+            <button class="package-btn1" onclick="bookPackage('Cinematic', 7500)">
+                Book Now
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- =========================
+     TERMS POPUPS
+========================= -->
+
+<!-- ESSENTIAL POPUP -->
+<div class="terms-popup" id="essentialTerms">
+
+    <div class="terms-popup-content">
+
+        <button
+            type="button"
+            class="close-popup"
+            onclick="closeTerms('essentialTerms')">
+            ×
+        </button>
+
+        <h4>Terms & Conditions</h4>
+
+        <ul>
+            <li>Package pricing is valid within 50km of Cape Town City Centre.</li>
+
+            <li>Travel fees apply outside the included radius.</li>
+
+            <li>A strict non-refundable 30% deposit is required to secure your booking.</li>
+
+            <li>Booking dates are only confirmed once deposit payment reflects.</li>
+
+            <li>Drone footage is weather and venue dependent.</li>
+
+            <li>Final delivery timelines may vary during peak wedding season.</li>
+        </ul>
+
+    </div>
+
+</div>
+
+<!-- PREMIUM POPUP -->
+<div class="terms-popup" id="premiumTerms">
+
+    <div class="terms-popup-content">
+
+        <button
+            type="button"
+            class="close-popup"
+            onclick="closeTerms('premiumTerms')">
+            ×
+        </button>
+
+        <h4>Terms & Conditions</h4>
+
+        <ul>
+            <li>Package pricing is valid within 50km of Cape Town City Centre.</li>
+
+            <li>Travel fees apply outside the included radius.</li>
+
+            <li>A strict non-refundable 30% deposit is required to secure your booking.</li>
+
+            <li>Booking dates are only confirmed once deposit payment reflects.</li>
+
+            <li>Drone footage is weather and venue dependent.</li>
+
+            <li>Final delivery timelines may vary during peak wedding season.</li>
+        </ul>
+
+    </div>
+
+</div>
+
+<!-- CINEMATIC POPUP -->
+<div class="terms-popup" id="cinematicTerms">
+
+    <div class="terms-popup-content">
+
+        <button
+            type="button"
+            class="close-popup"
+            onclick="closeTerms('cinematicTerms')">
+            ×
+        </button>
+
+        <h4>Terms & Conditions</h4>
+
+        <ul>
+            <li>Package pricing is valid within 50km of Cape Town City Centre.</li>
+
+            <li>Travel fees apply outside the included radius.</li>
+
+            <li>A strict non-refundable 30% deposit is required to secure your booking.</li>
+
+            <li>Booking dates are only confirmed once deposit payment reflects.</li>
+
+            <li>Drone footage is weather and venue dependent.</li>
+
+            <li>Final delivery timelines may vary during peak wedding season.</li>
+        </ul>
+
+    </div>
+
+</div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBooking()">&times;</span>
+            <h2>Book Your Package</h2>
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label>Package Selected</label>
+                    <input type="text" id="packageName" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Package Price</label>
+                    <input type="text" id="packagePrice" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Wedding Date *</label>
+                    <input type="date" id="weddingDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Wedding Location *</label>
+                    <input type="text" id="location" placeholder="City, Country" required>
+                </div>
+                <div class="form-group">
+                    <label>Special Requests</label>
+                    <textarea id="requests" rows="4" placeholder="Any special requirements or add-ons?"></textarea>
+                </div>
+                <button type="submit" class="cta-button">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text" data-scroll>
+                <h2>About Our Craft</h2>
+                <p>At Wildflower Films,we believe wedding films should tell your unique love story with cinematic excellence. Every frame is carefully crafted to capture the emotions, details, and beauty of your special day.</p>
+                <p>With over a decade of experience in wedding cinematography, we blend artistic vision with technical precision to create films that you'll cherish forever.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat" data-scroll>
+                    <h3>50+</h3>
+                    <p>Weddings Filmed</p>
+                </div>
+                <div class="stat" data-scroll>
+                    <h3>10+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat" data-scroll>
+                    <h3>100%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Let's Create Magic Together</h2>
+        <form class="contact-form" data-scroll>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Tell us about your wedding..." rows="5" required></textarea>
+            <button type="submit" class="cta-button">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Wildflower Films. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="Vimeo">Vimeo</a>
+            <a href="#" aria-label="YouTube">YouTube</a>
+        </div>
+    </footer>
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+
+        <span class="close-video" onclick="closeVideo()">&times;</span>
+
+        <video id="modalVideo" controls playsinline></video>
+
+    </div>
+</div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize EmailJS - Update YOUR_PUBLIC_KEY with your actual key from emailjs.com
+        emailjs.init('YOUR_PUBLIC_KEY');
+    </script>
+</body>
+</html>
