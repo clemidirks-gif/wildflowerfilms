@@ -83,28 +83,6 @@ document.querySelectorAll('[data-scroll]').forEach(el => {
 
 
 // ===============================
-// IMAGE FADE IN
-// ===============================
-document.querySelectorAll(".portfolio-image img").forEach(img => {
-    img.style.opacity = 0;
-    img.style.transition = "opacity 0.6s ease";
-
-    const imgObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                imgObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.2
-    });
-
-    imgObserver.observe(img);
-});
-
-
-// ===============================
 // BOOKING SYSTEM
 // ===============================
 function bookPackage(name, price) {
