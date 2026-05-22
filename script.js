@@ -1,57 +1,64 @@
 // ===============================
-// VIDEO MODAL SYSTEM (YOUTUBE FIXED + IMPROVED)
+// VIDEO MODAL SYSTEM (CLEAN + FIXED)
 // ===============================
 
 const modal = document.getElementById("videoModal");
 const iframe = document.getElementById("modalVideo");
 
+// OPEN VIDEO FROM PLAY BUTTON
 document.querySelectorAll(".play-button").forEach(btn => {
     btn.addEventListener("click", (e) => {
         e.stopPropagation();
 
         const card = btn.closest(".portfolio-card");
-        const url = card.getAttribute("data-video");
+        if (!card) return;
 
+        const url = card.getAttribute("data-video");
         const videoId = extractYouTubeID(url);
+
+        if (!videoId) return;
+
         openVideo(videoId);
     });
 });
 
-// OPEN VIDEO FUNCTION
+// OPEN MODAL + LOAD YOUTUBE
 function openVideo(videoId) {
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
+
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
 }
 
-// CLOSE VIDEO FUNCTION
+// CLOSE MODAL + STOP VIDEO
 function closeVideo() {
     modal.classList.remove("active");
-
-    // Stop video completely
-    iframe.src = "";
-
     document.body.style.overflow = "auto";
+
+    // fully stop playback
+    iframe.src = "";
 }
 
 window.closeVideo = closeVideo;
 
-// Extract YouTube ID safely
+// EXTRACT YOUTUBE ID (SAFE)
 function extractYouTubeID(url) {
+    if (!url) return null;
+
     const regex = /(?:youtube\.com.*(?:v=|\/)|youtu\.be\/)([^&?/]+)/;
     const match = url.match(regex);
+
     return match ? match[1] : null;
 }
 
-// Close on outside click
+// CLOSE ON OUTSIDE CLICK
 window.addEventListener("click", (e) => {
     if (e.target === modal) {
         closeVideo();
     }
 });
 
-// Close on ESC key
+// CLOSE ON ESC KEY
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
         closeVideo();
@@ -166,7 +173,7 @@ window.openTerms = openTerms;
 window.closeTerms = closeTerms;
 
 document.querySelectorAll('.terms-popup').forEach(popup => {
-    popup.addEventListener('click', function(e) {
+    popup.addEventListener('click', function (e) {
         if (e.target === popup) {
             popup.classList.remove('active');
         }
