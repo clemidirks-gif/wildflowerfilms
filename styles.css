@@ -270,8 +270,8 @@ body {
     overflow: hidden;
     transition: var(--transition);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    opacity: 0;
-    transform: translateY(50px);
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .portfolio-card[data-scroll] {
