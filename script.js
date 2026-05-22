@@ -5,16 +5,14 @@
 const modal = document.getElementById("videoModal");
 const iframe = document.getElementById("modalVideo");
 
-// Open video from portfolio card
-document.querySelectorAll(".portfolio-card").forEach(card => {
-    card.addEventListener("click", () => {
+document.querySelectorAll(".play-button").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
 
+        const card = btn.closest(".portfolio-card");
         const url = card.getAttribute("data-video");
-        if (!url) return;
 
         const videoId = extractYouTubeID(url);
-        if (!videoId) return;
-
         openVideo(videoId);
     });
 });
