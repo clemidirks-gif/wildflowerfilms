@@ -1,43 +1,61 @@
 // ===============================
-// VIDEO MODAL SYSTEM (PORTFOLIO)
+// VIDEO MODAL SYSTEM (YOUTUBE FIXED + IMPROVED)
 // ===============================
-const modal = document.getElementById("videoModal");
-const modalVideo = document.getElementById("modalVideo");
 
+const modal = document.getElementById("videoModal");
+const iframe = document.getElementById("modalVideo");
+
+// Open video from portfolio card
 document.querySelectorAll(".portfolio-card").forEach(card => {
     card.addEventListener("click", () => {
 
-        const videoSrc = card.getAttribute("data-video");
-        if (!videoSrc) return;
+        const url = card.getAttribute("data-video");
+        if (!url) return;
 
-        modalVideo.src = videoSrc;
-        modal.classList.add("active");
-        document.body.style.overflow = "hidden";
+        const videoId = extractYouTubeID(url);
+        if (!videoId) return;
 
-        const playPromise = modalVideo.play();
-
-        if (playPromise !== undefined) {
-            playPromise.catch(err => {
-                console.log("Autoplay issue:", err);
-            });
-        }
+        openVideo(videoId);
     });
 });
 
+// OPEN VIDEO FUNCTION
+function openVideo(videoId) {
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+// CLOSE VIDEO FUNCTION
 function closeVideo() {
     modal.classList.remove("active");
-    modalVideo.pause();
-    modalVideo.currentTime = 0;
-    modalVideo.src = "";
+
+    // Stop video completely
+    iframe.src = "";
+
     document.body.style.overflow = "auto";
 }
 
 window.closeVideo = closeVideo;
 
+// Extract YouTube ID safely
+function extractYouTubeID(url) {
+    const regex = /(?:youtube\.com.*(?:v=|\/)|youtu\.be\/)([^&?/]+)/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+}
 
-// close modal on outside click
+// Close on outside click
 window.addEventListener("click", (e) => {
     if (e.target === modal) {
+        closeVideo();
+    }
+});
+
+// Close on ESC key
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
         closeVideo();
     }
 });
@@ -103,6 +121,8 @@ document.querySelectorAll(".portfolio-image img").forEach(img => {
                 imgObserver.unobserve(entry.target);
             }
         });
+    }, {
+        threshold: 0.2
     });
 
     imgObserver.observe(img);
@@ -110,7 +130,7 @@ document.querySelectorAll(".portfolio-image img").forEach(img => {
 
 
 // ===============================
-// BOOKING SYSTEM (SAFE)
+// BOOKING SYSTEM
 // ===============================
 function bookPackage(name, price) {
     const modal = document.getElementById("bookingModal");
@@ -134,10 +154,8 @@ window.closeBooking = closeBooking;
 
 
 // ===============================
-// INIT
+// TERMS POPUPS
 // ===============================
-console.log("Wildflower Films portfolio loaded 🎬");
-
 function openTerms(id) {
     document.getElementById(id).classList.add('active');
 }
@@ -146,7 +164,8 @@ function closeTerms(id) {
     document.getElementById(id).classList.remove('active');
 }
 
-/* Close when clicking outside popup */
+window.openTerms = openTerms;
+window.closeTerms = closeTerms;
 
 document.querySelectorAll('.terms-popup').forEach(popup => {
     popup.addEventListener('click', function(e) {
@@ -155,3 +174,9 @@ document.querySelectorAll('.terms-popup').forEach(popup => {
         }
     });
 });
+
+
+// ===============================
+// INIT
+// ===============================
+console.log("Wildflower Films portfolio loaded 🎬");
