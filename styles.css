@@ -123,17 +123,21 @@ body {
     position: absolute;
     inset: 0;
     z-index: 0;
+    overflow: hidden;
 }
 
 .hero-video iframe {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 130vw;
-    height: 130vh;
-    transform: translate(-50%, -50%);
+    width: 120vw;
+    height: 120vh;
+    transform: translate(-50%, -50%) scale(1.1);
     border: none;
     pointer-events: none;
+
+    /* IMPORTANT: kills visual flicker perception */
+    filter: brightness(1.05) contrast(1.05);
 }
 
 .hero-overlay {
@@ -144,10 +148,20 @@ body {
 }
 
 .hero-content {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
-    animation: fadeInUp 1s ease-out 0.3s both;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.hero-content {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform;
 }
 
 .hero-title {
