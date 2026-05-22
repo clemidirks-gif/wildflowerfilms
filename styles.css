@@ -308,14 +308,15 @@ body {
 }
 
 .video-modal-content {
-    width: 85%;
+    width: 90%;
     max-width: 1000px;
     position: relative;
 }
 
-.video-modal video {
+.video-modal-content iframe {
     width: 100%;
-    border-radius: 10px;
+    height: 70vh;
+    border-radius: 12px;
     background: black;
 }
 
@@ -359,18 +360,18 @@ body {
     transform: scale(1.1);
 }
 
+
 .portfolio-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 10, 10, 0.5);
+    inset: 0;
+    background: rgba(10, 10, 10, 0.45);
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     opacity: 0;
-    transition: var(--transition);
+    transition: 0.4s ease;
 }
 
 .portfolio-card:hover .portfolio-overlay {
@@ -378,19 +379,26 @@ body {
 }
 
 .play-button {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    transition: var(--transition);
-}
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.4rem;
+
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+
+    color: white;
+
+    transition: 0.3s ease;
+}
 .play-button:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
+    background: rgba(255,255,255,0.2);
 }
 
 .portfolio-card h3 {
@@ -1162,4 +1170,115 @@ body {
     .scroll-indicator {
         bottom: 20px;
     }
+}
+/* =========================
+   PORTFOLIO FIX (SAFE ADD)
+========================= */
+
+.portfolio-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.portfolio-card {
+    background: var(--secondary-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-8px);
+}
+
+.portfolio-image {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s ease;
+}
+
+.portfolio-card:hover img {
+    transform: scale(1.08);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.play-button {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    transition: 0.3s ease;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+    background: rgba(255,255,255,0.2);
+}
+
+/* MODAL FIX */
+.video-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.video-modal-content {
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+}
+
+#videoFrame {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 12px;
+}
+
+.close-video {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
 }

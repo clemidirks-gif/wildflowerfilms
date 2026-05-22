@@ -1,68 +1,38 @@
 // ===============================
-// VIDEO MODAL SYSTEM (CLEAN + FIXED)
+// PORTFOLIO VIDEO (FIXED CLEAN)
 // ===============================
 
 const modal = document.getElementById("videoModal");
-const iframe = document.getElementById("modalVideo");
+const frame = document.getElementById("videoFrame");
+const closeBtn = document.querySelector(".close-video");
 
-// OPEN VIDEO FROM PLAY BUTTON
-document.querySelectorAll(".play-button").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-        e.stopPropagation();
+// OPEN VIDEO
+document.querySelectorAll(".portfolio-card").forEach(card => {
+    card.addEventListener("click", () => {
+        const id = card.getAttribute("data-video");
+        if (!id) return;
 
-        const card = btn.closest(".portfolio-card");
-        if (!card) return;
-
-        const url = card.getAttribute("data-video");
-        const videoId = extractYouTubeID(url);
-
-        if (!videoId) return;
-
-        openVideo(videoId);
+        frame.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
     });
 });
 
-// OPEN MODAL + LOAD YOUTUBE
-function openVideo(videoId) {
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
-
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-}
-
-// CLOSE MODAL + STOP VIDEO
+// CLOSE VIDEO
 function closeVideo() {
     modal.classList.remove("active");
+    frame.src = "";
     document.body.style.overflow = "auto";
-
-    // fully stop playback
-    iframe.src = "";
 }
 
-window.closeVideo = closeVideo;
+closeBtn.addEventListener("click", closeVideo);
 
-// EXTRACT YOUTUBE ID (SAFE)
-function extractYouTubeID(url) {
-    if (!url) return null;
-
-    const regex = /(?:youtube\.com.*(?:v=|\/)|youtu\.be\/)([^&?/]+)/;
-    const match = url.match(regex);
-
-    return match ? match[1] : null;
-}
-
-// CLOSE ON OUTSIDE CLICK
-window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-        closeVideo();
-    }
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeVideo();
 });
 
-// CLOSE ON ESC KEY
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        closeVideo();
-    }
+    if (e.key === "Escape") closeVideo();
 });
 
 
