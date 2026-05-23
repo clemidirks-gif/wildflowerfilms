@@ -133,3 +133,77 @@ document.querySelectorAll('.terms-popup').forEach(popup => {
 // INIT
 // ===============================
 console.log("Wildflower Films portfolio loaded 🎬");
+
+// ===============================
+// EMAILJS BOOKING FORM (FIXED)
+// ===============================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const bookingForm = document.getElementById("bookingForm");
+
+    if (!bookingForm) return;
+
+    bookingForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const submitBtn = bookingForm.querySelector("button[type='submit']");
+        submitBtn.innerText = "Sending...";
+
+        emailjs.send("service_tdoof9d", "template_s9827wg", {
+            from_name: document.getElementById("fullName").value,
+            from_email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            package: document.getElementById("packageName").value,
+            price: document.getElementById("packagePrice").value,
+            wedding_date: document.getElementById("weddingDate").value,
+            location: document.getElementById("location").value,
+            requests: document.getElementById("requests").value,
+            submitted_at: new Date().toLocaleString()
+        })
+
+        .then(() => {
+            bookingForm.reset();
+            closeBooking();
+
+            submitBtn.innerText = "Confirm Booking";
+
+            showSuccessPopup();
+        })
+
+        .catch((error) => {
+            console.error(error);
+            submitBtn.innerText = "Confirm Booking";
+            alert("Something went wrong. Please try again.");
+        });
+    });
+});
+
+// ===============================
+// SIMPLE SUCCESS POPUP
+// ===============================
+function showSuccessPopup() {
+    const popup = document.createElement("div");
+
+    popup.innerHTML = `
+        <div style="
+            position:fixed;
+            bottom:30px;
+            left:50%;
+            transform:translateX(-50%);
+            background:#fff;
+            color:#000;
+            padding:15px 25px;
+            border-radius:50px;
+            font-size:14px;
+            z-index:99999;
+            box-shadow:0 10px 30px rgba(0,0,0,0.2);
+        ">
+            Thanks! We’ll be in contact shortly.
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    setTimeout(() => popup.remove(), 4000);
+}
