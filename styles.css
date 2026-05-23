@@ -269,7 +269,7 @@ body {
     border-radius: 12px;
     overflow: hidden;
     transition: var(--transition);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.00);
     opacity: 1 !important;
     transform: none !important;
 }
@@ -329,7 +329,8 @@ body {
 }
 
 .portfolio-card:hover {
-    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.08);
+    transform: translateY(-10px);
 }
 
 .portfolio-image {
