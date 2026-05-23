@@ -150,22 +150,29 @@ document.addEventListener("DOMContentLoaded", function () {
         const submitBtn = bookingForm.querySelector("button[type='submit']");
         submitBtn.innerText = "Sending...";
 
-       emailjs.send(
+emailjs.send(
     "service_tdoof9d",
     "template_s9827wg",
     {
         from_name: document.getElementById("fullName").value,
         from_email: document.getElementById("email").value,
+        reply_to: document.getElementById("email").value,
+
         phone: document.getElementById("phone").value,
 
         package_name: document.getElementById("packageName").value,
 
         price: document.getElementById("packagePrice").value,
+
         wedding_date: document.getElementById("weddingDate").value,
+
         location: document.getElementById("location").value,
+
         requests: document.getElementById("requests").value || "None",
+
         submitted_at: new Date().toLocaleString()
-    }
+    },
+    "XHHbEPSh0jtgCofVr"
 )
         .then(() => {
             bookingForm.reset();
