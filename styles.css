@@ -328,6 +328,13 @@ body {
     transition: 0.3s ease;
 }
 
+portfolio-card h3{
+    font-size: 1.5rem;
+    left: 30px;
+padding: 1rem;
+    color: var(--text-primary);
+}
+
 .portfolio-card:hover {
     box-shadow: 0 10px 40px rgba(255, 255, 255, 0.08);
     transform: translateY(-10px);
@@ -337,19 +344,6 @@ body {
     position: relative;
     height: 260px;
     overflow: hidden;
-}
-
-.portfolio-image h3{
-    position: absolute;
-    bottom: 0;
-    left: 20px;
-    right: 0;
-    padding: 2rem;
-    background: rgba(0,0,0,0.6);
-    color: var(--accent);
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-align: center;
 }
 
 .portfolio-image img {
