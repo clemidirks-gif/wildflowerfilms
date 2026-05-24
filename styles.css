@@ -339,6 +339,7 @@ body {
     color: var(--text-secondary);
     font-size: 0.95rem;
     margin-left: 10px;
+    margin-bottom: 5px;
 }
 
 .portfolio-card:hover {
