@@ -39,7 +39,7 @@ document.addEventListener("keydown", (e) => {
 // ===============================
 // CTA SCROLL
 // ===============================
-document.querySelector('.cta-button')?.addEventListener('click', () => {
+document.querySelector('.hero-cta')?.addEventListener('click', () => {
     document.querySelector('#portfolio')?.scrollIntoView({
         behavior: 'smooth'
     });
