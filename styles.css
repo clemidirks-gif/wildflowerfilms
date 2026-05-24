@@ -328,11 +328,18 @@ body {
     transition: 0.3s ease;
 }
 
-portfolio-card h3{
+.portfolio-info {
+    padding: 1.2rem 0 1.5rem 2rem;
+}
+
+.portfolio-info h3 {
     font-size: 1.5rem;
-   margin-left: 30px;
-padding: 1rem;
-    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+}
+
+.portfolio-info p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
 }
 
 .portfolio-card:hover {
