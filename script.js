@@ -236,22 +236,22 @@ document.addEventListener("DOMContentLoaded", function () {
         const submitBtn = contactForm.querySelector("button[type='submit']");
         submitBtn.innerText = "Sending...";
 
-        emailjs.send(
-            "service_tdoof9d",
-            "template_s9827wg",
-            {
-                from_name: document.getElementById("contactName").value,
+emailjs.send(
+    "service_tdoof9d",
+    "template_7cv8xqr",
+    {
+        from_name: document.getElementById("contactName").value,
 
-                from_email: document.getElementById("contactEmail").value,
+        from_email: document.getElementById("contactEmail").value,
 
-                reply_to: document.getElementById("contactEmail").value,
+        reply_to: document.getElementById("contactEmail").value,
 
-                requests: document.getElementById("contactMessage").value,
+        requests: document.getElementById("contactMessage").value,
 
-                submitted_at: new Date().toLocaleString()
-            },
-            "XHHbEPSh0jtgCofVr"
-        )
+        submitted_at: new Date().toLocaleString()
+    },
+    "XHHbEPSh0jtgCofVr"
+)
 
         .then(() => {
 
