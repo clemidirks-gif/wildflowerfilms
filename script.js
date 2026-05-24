@@ -219,3 +219,59 @@ function showSuccessPopup() {
 
     setTimeout(() => popup.remove(), 4000);
 }
+// ===============================
+// CONTACT FORM EMAILJS
+// ===============================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const contactForm = document.getElementById("contactForm");
+
+    if (!contactForm) return;
+
+    contactForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const submitBtn = contactForm.querySelector("button[type='submit']");
+        submitBtn.innerText = "Sending...";
+
+        emailjs.send(
+            "service_tdoof9d",
+            "template_s9827wg",
+            {
+                from_name: document.getElementById("contactName").value,
+
+                from_email: document.getElementById("contactEmail").value,
+
+                reply_to: document.getElementById("contactEmail").value,
+
+                requests: document.getElementById("contactMessage").value,
+
+                submitted_at: new Date().toLocaleString()
+            },
+            "XHHbEPSh0jtgCofVr"
+        )
+
+        .then(() => {
+
+            contactForm.reset();
+
+            submitBtn.innerText = "Send Message";
+
+            showSuccessPopup();
+
+        })
+
+        .catch((error) => {
+
+            console.error(error);
+
+            submitBtn.innerText = "Send Message";
+
+            alert("Something went wrong. Please try again.");
+        });
+
+    });
+
+});

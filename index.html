@@ -390,12 +390,34 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2 class="section-title">Let's Create Magic Together</h2>
-        <form class="contact-form" data-scroll>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Tell us about your wedding..." rows="5" required></textarea>
-            <button type="submit" class="cta-button">Send Message</button>
-        </form>
+<form id="contactForm" class="contact-form" data-scroll>
+
+    <input
+        type="text"
+        id="contactName"
+        placeholder="Your Name"
+        required
+    >
+
+    <input
+        type="email"
+        id="contactEmail"
+        placeholder="Your Email"
+        required
+    >
+
+    <textarea
+        id="contactMessage"
+        placeholder="Tell us about your wedding..."
+        rows="5"
+        required
+    ></textarea>
+
+    <button type="submit" class="cta-button">
+        Send Message
+    </button>
+
+</form>
     </section>
 
     <!-- Footer -->
