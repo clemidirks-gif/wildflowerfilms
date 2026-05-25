@@ -150,13 +150,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const submitBtn = bookingForm.querySelector("button[type='submit']");
         submitBtn.innerText = "Sending...";
 
+// SEND TO YOU
 emailjs.send(
     "service_tdoof9d",
     "template_s9827wg",
     {
+        to_email: "clemdirks@gmail.com",
+
         from_name: document.getElementById("fullName").value,
+
         from_email: document.getElementById("email").value,
-        reply_to: document.getElementById("email").value,
 
         phone: document.getElementById("phone").value,
 
@@ -168,20 +171,26 @@ emailjs.send(
 
         location: document.getElementById("location").value,
 
-        requests: document.getElementById("requests").value || "None",
-
-        submitted_at: new Date().toLocaleString()
-    },
-    "XHHbEPSh0jtgCofVr"
+        requests: document.getElementById("requests").value
+    }
 )
-        .then(() => {
-            bookingForm.reset();
-            closeBooking();
 
-            submitBtn.innerText = "Confirm Booking";
+// AUTO REPLY TO CLIENT
+.then(() => {
 
-            showSuccessPopup();
-        })
+    return emailjs.send(
+        "service_tdoof9d",
+        "template_s9827wg",
+        {
+            to_email: document.getElementById("email").value,
+
+            from_name: document.getElementById("fullName").value,
+
+            package_name: document.getElementById("packageName").value
+        }
+    );
+
+})
 
         .catch((error) => {
             console.error(error);
@@ -236,32 +245,35 @@ document.addEventListener("DOMContentLoaded", function () {
         const submitBtn = contactForm.querySelector("button[type='submit']");
         submitBtn.innerText = "Sending...";
 
+// SEND TO YOU
 emailjs.send(
     "service_tdoof9d",
     "template_7cv8xqr",
     {
+        to_email: "clemdirks@gmail.com",
+
         from_name: document.getElementById("contactName").value,
 
         from_email: document.getElementById("contactEmail").value,
 
-        reply_to: document.getElementById("contactEmail").value,
-
-        requests: document.getElementById("contactMessage").value,
-
-        submitted_at: new Date().toLocaleString()
-    },
-    "XHHbEPSh0jtgCofVr"
+        requests: document.getElementById("contactMessage").value
+    }
 )
 
-        .then(() => {
+// AUTO REPLY TO CLIENT
+.then(() => {
 
-            contactForm.reset();
+    return emailjs.send(
+        "service_tdoof9d",
+        "template_7cv8xqr",
+        {
+            to_email: document.getElementById("contactEmail").value,
 
-            submitBtn.innerText = "Send Message";
+            from_name: document.getElementById("contactName").value
+        }
+    );
 
-            showSuccessPopup();
-
-        })
+})
 
         .catch((error) => {
 
