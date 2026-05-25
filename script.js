@@ -62,22 +62,35 @@ window.addEventListener('scroll', () => {
 
 
 // ===============================
-// SCROLL ANIMATIONS
+// ===============================
+// WEBFLOW-STYLE SCROLL REVEAL
 // ===============================
 
-const observer = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+
         if (entry.isIntersecting) {
-            entry.target.style.animation = "scrollReveal 0.8s ease-out forwards";
-            observer.unobserve(entry.target);
+
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = "translateY(0)";
+            entry.target.style.transition = "all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)";
+
+            revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.1 });
+}, {
+    threshold: 0.15
+});
 
-document.querySelectorAll('[data-scroll]').forEach(el => {
+document.querySelectorAll('[data-scroll]').forEach((el, i) => {
+
     el.style.opacity = 0;
     el.style.transform = "translateY(40px)";
-    observer.observe(el);
+
+    // stagger effect (Webflow feel)
+    el.style.transitionDelay = `${i * 80}ms`;
+
+    revealObserver.observe(el);
 });
 
 

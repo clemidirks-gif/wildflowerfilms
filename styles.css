@@ -213,28 +213,53 @@ body {
     box-shadow: 0 10px 30px rgba(255, 255, 255, 0.12);
 }
 
-/* Scroll Indicator */
+/* ===============================
+   SCROLL INDICATOR (WEBFLOW STYLE)
+=============================== */
+
 .scroll-indicator {
     position: absolute;
-    bottom: 10vh;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-secondary);
-    animation: bounce 2s ease-in-out infinite;
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeInUp 1.5s ease forwards;
 }
 
-@keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(10px); }
+.mouse {
+    width: 22px;
+    height: 35px;
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 20px;
+    margin: 0 auto 8px;
+    position: relative;
 }
 
-.scroll-arrow {
-    font-size: 1.5rem;
+.mouse::after {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.5s infinite;
+}
+
+@keyframes scrollWheel {
+    0% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 14px); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
 }
 
 /* Portfolio Section */
