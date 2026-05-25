@@ -210,7 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ===============================
-// EMAILJS - CONTACT FORM
+// ===============================
+// EMAILJS - CONTACT FORM (FIXED)
 // ===============================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -225,12 +226,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const btn = contactForm.querySelector("button[type='submit']");
         btn.innerText = "Sending...";
 
+        // MATCHING YOUR HTML IDs EXACTLY
+        const name = document.getElementById("contactName");
+        const email = document.getElementById("contactEmail");
+        const message = document.getElementById("contactMessage");
+
+        // safety check (prevents crashes)
+        if (!name || !email || !message) {
+            console.error("Missing contact form fields");
+            alert("Form error: missing fields.");
+            btn.innerText = "Send Message";
+            return;
+        }
+
         try {
             await emailjs.send("service_tdoof9d", "template_s9827wg", {
                 to_email: "clemidirks@gmail.com",
-                from_name: document.getElementById("contactName").value,
-                from_email: document.getElementById("contactEmail").value,
-                message: document.getElementById("message").value
+                from_name: name.value,
+                from_email: email.value,
+                message: message.value
             });
 
             contactForm.reset();
@@ -244,8 +258,6 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.innerText = "Send Message";
     });
 });
-
-
 // ===============================
 // INIT LOG
 // ===============================
