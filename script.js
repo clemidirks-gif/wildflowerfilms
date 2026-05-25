@@ -155,7 +155,7 @@ emailjs.send(
     "service_tdoof9d",
     "template_s9827wg",
     {
-        to_email: "clemdirks@gmail.com",
+        to_email: "clemidirks@gmail.com",
 
         from_name: document.getElementById("fullName").value,
 
@@ -250,7 +250,7 @@ emailjs.send(
     "service_tdoof9d",
     "template_7cv8xqr",
     {
-        to_email: "clemdirks@gmail.com",
+        to_email: "clemidirks@gmail.com",
 
         from_name: document.getElementById("contactName").value,
 
