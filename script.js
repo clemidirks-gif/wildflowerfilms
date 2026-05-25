@@ -208,10 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
 // ===============================
-// ===============================
-// EMAILJS - CONTACT FORM (FIXED)
+// EMAILJS - CONTACT FORM (DUAL SEND FIXED)
 // ===============================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -226,12 +224,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const btn = contactForm.querySelector("button[type='submit']");
         btn.innerText = "Sending...";
 
-        // MATCHING YOUR HTML IDs EXACTLY
         const name = document.getElementById("contactName");
         const email = document.getElementById("contactEmail");
         const message = document.getElementById("contactMessage");
 
-        // safety check (prevents crashes)
         if (!name || !email || !message) {
             console.error("Missing contact form fields");
             alert("Form error: missing fields.");
@@ -240,12 +236,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            await emailjs.send("service_tdoof9d", "template_s9827wg", {
-                to_email: "clemidirks@gmail.com",
-                from_name: name.value,
-                from_email: email.value,
-                message: message.value
-            });
+
+            await Promise.all([
+
+                // 1. SEND TO YOU (business email)
+                emailjs.send("service_tdoof9d", "template_7cv8xqr", {
+                    to_email: "clemidirks@gmail.com",
+                    from_name: name.value,
+                    from_email: email.value,
+                    message: message.value
+                }),
+
+/* ------------------------------------------------------ */
+
+                // 2. AUTO-REPLY TO CLIENT
+                emailjs.send("service_tdoof9d", "template_7cv8xqr", {
+                    to_email: email.value,
+                    from_name: "Wildflower Films",
+                    message: "Thanks for reaching out! We’ll get back to you shortly."
+                })
+
+            ]);
 
             contactForm.reset();
             showSuccessPopup();
