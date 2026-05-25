@@ -274,16 +274,30 @@ emailjs.send(
     );
 
 })
+})
 
-        .catch((error) => {
+// FINAL SUCCESS
+.then(() => {
 
-            console.error(error);
+    bookingForm.reset();
 
-            submitBtn.innerText = "Send Message";
+    closeBooking();
 
-            alert("Something went wrong. Please try again.");
-        });
+    submitBtn.innerText = "Confirm Booking";
 
-    });
+    showSuccessPopup();
+
+})
+
+// ERROR
+.catch((error) => {
+
+    console.error(error);
+
+    submitBtn.innerText = "Send Message";
+
+    alert("Something went wrong. Please try again.");
 
 });
+
+    });
