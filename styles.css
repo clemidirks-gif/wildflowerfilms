@@ -219,6 +219,7 @@ body {
 
 .scroll-indicator {
     position: absolute;
+        font-family: 'Rethink Sans', serif;
     bottom: -260px;
     left: 45%;
     transform: translateX(-50%);
@@ -226,7 +227,6 @@ body {
     color: rgba(255,255,255,0.7);
     font-size: 12px;
     letter-spacing: 2px;
-    text-transform: uppercase;
     animation: fadeInUp 1.5s ease forwards;
 }
 
