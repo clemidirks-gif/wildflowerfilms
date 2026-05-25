@@ -1,34 +1,32 @@
 // ===============================
-// PORTFOLIO VIDEO (FIXED CLEAN)
+// PORTFOLIO VIDEO MODAL
 // ===============================
 
-const modal = document.getElementById("videoModal");
-const frame = document.getElementById("videoFrame");
-const closeBtn = document.querySelector(".close-video");
+const videoModal = document.getElementById("videoModal");
+const videoFrame = document.getElementById("videoFrame");
+const closeVideoBtn = document.querySelector(".close-video");
 
-// OPEN VIDEO
 document.querySelectorAll(".portfolio-card").forEach(card => {
     card.addEventListener("click", () => {
         const id = card.getAttribute("data-video");
         if (!id) return;
 
-        frame.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-        modal.classList.add("active");
+        videoFrame.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+        videoModal.classList.add("active");
         document.body.style.overflow = "hidden";
     });
 });
 
-// CLOSE VIDEO
 function closeVideo() {
-    modal.classList.remove("active");
-    frame.src = "";
+    videoModal.classList.remove("active");
+    videoFrame.src = "";
     document.body.style.overflow = "auto";
 }
 
-closeBtn.addEventListener("click", closeVideo);
+closeVideoBtn?.addEventListener("click", closeVideo);
 
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeVideo();
+videoModal?.addEventListener("click", (e) => {
+    if (e.target === videoModal) closeVideo();
 });
 
 document.addEventListener("keydown", (e) => {
@@ -37,8 +35,9 @@ document.addEventListener("keydown", (e) => {
 
 
 // ===============================
-// CTA SCROLL
+// HERO CTA SCROLL
 // ===============================
+
 document.querySelector('.hero-cta')?.addEventListener('click', () => {
     document.querySelector('#portfolio')?.scrollIntoView({
         behavior: 'smooth'
@@ -49,6 +48,7 @@ document.querySelector('.hero-cta')?.addEventListener('click', () => {
 // ===============================
 // NAVBAR SCROLL EFFECT
 // ===============================
+
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
@@ -64,6 +64,7 @@ window.addEventListener('scroll', () => {
 // ===============================
 // SCROLL ANIMATIONS
 // ===============================
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -71,9 +72,7 @@ const observer = new IntersectionObserver((entries) => {
             observer.unobserve(entry.target);
         }
     });
-}, {
-    threshold: 0.1
-});
+}, { threshold: 0.1 });
 
 document.querySelectorAll('[data-scroll]').forEach(el => {
     el.style.opacity = 0;
@@ -83,8 +82,9 @@ document.querySelectorAll('[data-scroll]').forEach(el => {
 
 
 // ===============================
-// BOOKING SYSTEM
+// BOOKING MODAL SYSTEM
 // ===============================
+
 function bookPackage(name, price) {
     const modal = document.getElementById("bookingModal");
 
@@ -109,100 +109,29 @@ window.closeBooking = closeBooking;
 // ===============================
 // TERMS POPUPS
 // ===============================
+
 function openTerms(id) {
-    document.getElementById(id).classList.add('active');
+    document.getElementById(id)?.classList.add('active');
 }
 
 function closeTerms(id) {
-    document.getElementById(id).classList.remove('active');
+    document.getElementById(id)?.classList.remove('active');
 }
 
 window.openTerms = openTerms;
 window.closeTerms = closeTerms;
 
 document.querySelectorAll('.terms-popup').forEach(popup => {
-    popup.addEventListener('click', function (e) {
-        if (e.target === popup) {
-            popup.classList.remove('active');
-        }
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) popup.classList.remove('active');
     });
 });
 
 
 // ===============================
-// INIT
-// ===============================
-console.log("Wildflower Films portfolio loaded 🎬");
-
-// ===============================
-// EMAILJS BOOKING FORM (FIXED)
+// SUCCESS POPUP
 // ===============================
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const bookingForm = document.getElementById("bookingForm");
-
-    if (!bookingForm) return;
-
-    bookingForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const submitBtn = bookingForm.querySelector("button[type='submit']");
-        submitBtn.innerText = "Sending...";
-
-// SEND TO YOU
-emailjs.send(
-    "service_tdoof9d",
-    "template_s9827wg",
-    {
-        to_email: "clemidirks@gmail.com",
-
-        from_name: document.getElementById("fullName").value,
-
-        from_email: document.getElementById("email").value,
-
-        phone: document.getElementById("phone").value,
-
-        package_name: document.getElementById("packageName").value,
-
-        price: document.getElementById("packagePrice").value,
-
-        wedding_date: document.getElementById("weddingDate").value,
-
-        location: document.getElementById("location").value,
-
-        requests: document.getElementById("requests").value
-    }
-)
-
-// AUTO REPLY TO CLIENT
-.then(() => {
-
-    return emailjs.send(
-        "service_tdoof9d",
-        "template_s9827wg",
-        {
-            to_email: document.getElementById("email").value,
-
-            from_name: document.getElementById("fullName").value,
-
-            package_name: document.getElementById("packageName").value
-        }
-    );
-
-})
-
-        .catch((error) => {
-            console.error(error);
-            submitBtn.innerText = "Confirm Booking";
-            alert("Something went wrong. Please try again.");
-        });
-    });
-});
-
-// ===============================
-// SIMPLE SUCCESS POPUP
-// ===============================
 function showSuccessPopup() {
     const popup = document.createElement("div");
 
@@ -225,79 +154,100 @@ function showSuccessPopup() {
     `;
 
     document.body.appendChild(popup);
-
     setTimeout(() => popup.remove(), 4000);
 }
+
+
 // ===============================
-// CONTACT FORM EMAILJS
+// EMAILJS - BOOKING FORM
 // ===============================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+
+    const bookingForm = document.getElementById("bookingForm");
+
+    if (!bookingForm) return;
+
+    bookingForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const btn = bookingForm.querySelector("button[type='submit']");
+        btn.innerText = "Sending...";
+
+        try {
+            await Promise.all([
+                emailjs.send("service_tdoof9d", "template_s9827wg", {
+                    to_email: "clemidirks@gmail.com",
+                    from_name: document.getElementById("fullName").value,
+                    from_email: document.getElementById("email").value,
+                    phone: document.getElementById("phone").value,
+                    package_name: document.getElementById("packageName").value,
+                    price: document.getElementById("packagePrice").value,
+                    wedding_date: document.getElementById("weddingDate").value,
+                    location: document.getElementById("location").value,
+                    requests: document.getElementById("requests").value || "None"
+                }),
+
+                emailjs.send("service_tdoof9d", "template_s9827wg", {
+                    to_email: document.getElementById("email").value,
+                    from_name: document.getElementById("fullName").value,
+                    package_name: document.getElementById("packageName").value
+                })
+            ]);
+
+            bookingForm.reset();
+            closeBooking();
+            showSuccessPopup();
+
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong. Please try again.");
+        }
+
+        btn.innerText = "Confirm Booking";
+    });
+});
+
+
+// ===============================
+// EMAILJS - CONTACT FORM
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
 
     const contactForm = document.getElementById("contactForm");
 
     if (!contactForm) return;
 
-    contactForm.addEventListener("submit", function (e) {
-
+    contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const submitBtn = contactForm.querySelector("button[type='submit']");
-        submitBtn.innerText = "Sending...";
+        const btn = contactForm.querySelector("button[type='submit']");
+        btn.innerText = "Sending...";
 
-// SEND TO YOU
-emailjs.send(
-    "service_tdoof9d",
-    "template_7cv8xqr",
-    {
-        to_email: "clemidirks@gmail.com",
+        try {
+            await emailjs.send("service_tdoof9d", "template_s9827wg", {
+                to_email: "clemidirks@gmail.com",
+                from_name: document.getElementById("contactName").value,
+                from_email: document.getElementById("contactEmail").value,
+                message: document.getElementById("message").value
+            });
 
-        from_name: document.getElementById("contactName").value,
+            contactForm.reset();
+            showSuccessPopup();
 
-        from_email: document.getElementById("contactEmail").value,
-
-        requests: document.getElementById("contactMessage").value
-    }
-)
-
-// AUTO REPLY TO CLIENT
-.then(() => {
-
-    return emailjs.send(
-        "service_tdoof9d",
-        "template_7cv8xqr",
-        {
-            to_email: document.getElementById("contactEmail").value,
-
-            from_name: document.getElementById("contactName").value
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong. Please try again.");
         }
-    );
 
-})
-})
-
-// FINAL SUCCESS
-.then(() => {
-
-    bookingForm.reset();
-
-    closeBooking();
-
-    submitBtn.innerText = "Confirm Booking";
-
-    showSuccessPopup();
-
-})
-
-// ERROR
-.catch((error) => {
-
-    console.error(error);
-
-    submitBtn.innerText = "Send Message";
-
-    alert("Something went wrong. Please try again.");
-
+        btn.innerText = "Send Message";
+    });
 });
 
-    });
+
+// ===============================
+// INIT LOG
+// ===============================
+
+console.log("Wildflower Films portfolio loaded 🎬");
