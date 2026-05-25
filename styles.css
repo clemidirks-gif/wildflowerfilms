@@ -219,8 +219,8 @@ body {
 
 .scroll-indicator {
     position: absolute;
-    bottom: 30px;
-    left: 50%;
+    bottom: -250px;
+    left: 40%;
     transform: translateX(-50%);
     text-align: center;
     color: rgba(255,255,255,0.7);
