@@ -1407,3 +1407,24 @@ video::-webkit-media-controls {
 video::-webkit-media-controls-start-playback-button {
     display: none !important;
 }
+
+@media (max-width: 768px) {
+
+    /* Hide video on mobile */
+    .hero-video video {
+        display: none;
+    }
+
+    /* Add image background instead */
+    .hero-video {
+        background-image: url("images/Background.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* Optional: slightly stronger overlay for readability */
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.45);
+    }
+}
