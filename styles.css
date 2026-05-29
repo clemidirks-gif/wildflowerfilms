@@ -1417,7 +1417,7 @@ video::-webkit-media-controls-start-playback-button {
 
     /* Add image background instead */
     .hero-video {
-        background-image: url("images/Background.jpg");
+        background-image: url("images/mobile bg.webp");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
