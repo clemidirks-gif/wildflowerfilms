@@ -1323,3 +1323,87 @@ body {
         max-width: 1400px;
     }
 }
+
+@media (max-width: 768px) {
+
+    /* ===============================
+       FIX HERO FULLSCREEN GAP (iOS)
+    =============================== */
+
+    .hero {
+        height: 100vh;
+        height: 100svh; /* modern mobile fix */
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .hero-video,
+    .hero-video video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: none; /* removes the weird centering shift */
+    }
+
+    .hero-video video {
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
+    /* ===============================
+       FIX NAV OVERLAP / TOP GAP
+    =============================== */
+
+    .navbar {
+        padding: 1rem 0;
+    }
+
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    /* ===============================
+       HERO TEXT MOBILE OPTIMIZATION
+    =============================== */
+
+    .hero-title {
+        font-size: 3.2rem !important;
+        line-height: 1.05;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Make CTA smaller but still premium */
+    .cta-button,
+    .hero-cta {
+        font-size: 0.75rem;
+        padding: 0.65rem 1.4rem;
+        border-radius: 40px;
+    }
+
+    /* ===============================
+       HIDE SCROLL INDICATOR ON MOBILE
+    =============================== */
+
+    .scroll-indicator {
+        display: none !important;
+    }
+
+}
+
+
+/* Hide iOS native video controls overlay */
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
