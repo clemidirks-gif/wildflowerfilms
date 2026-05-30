@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             await Promise.all([
                 emailjs.send("service_tdoof9d", "template_s9827wg", {
-                    to_email: "clemidirks@gmail.com",
+                    to_email: "info@wildflowerfilms.co.za",
                     from_name: document.getElementById("fullName").value,
                     from_email: document.getElementById("email").value,
                     phone: document.getElementById("phone").value,
@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // 1. SEND TO YOU (business email)
                 emailjs.send("service_tdoof9d", "template_7cv8xqr", {
-                    to_email: "clemidirks@gmail.com",
+                    to_email: "info@wildflowerfilms.co.za",
                     from_name: name.value,
                     from_email: email.value,
                     message: message.value
