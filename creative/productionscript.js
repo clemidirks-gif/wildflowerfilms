@@ -223,7 +223,7 @@ const fragmentShader = `
         
         // smoothstep(radius, 0., distance) 
         // This makes 'cursor' 1.0 at the mouse center, and fades to 0.0 at a distance of 0.4
-        float cursor = smoothstep(.4, 0., mouseDist); 
+        float cursor = smoothstep(.2, 0., mouseDist); 
         
         // 2. Calculate the noise
         float n = noise(uv * 3.0 + t);
