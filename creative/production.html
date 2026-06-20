@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildflower Creative | Web & Content Design</title>
+    <link rel="stylesheet" href="productionstyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-wrapper">
+                <div class="logo">
+                    <!-- Update with your new division logo if you have one -->
+                    <img src="images/wildflower-films-logo.png" alt="Wildflower Creative Logo">
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="https://www.wildflowerfilms.co.za">Back to Wildflower Films</a></li>
+                <li class="dropdown">
+                    <a href="#web-design">Web Design ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#portfolio">Portfolio</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#content-design">Content Design ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#photography">Photography</a>
+                        <a href="#content-creation">Content Creation</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION WITH HOVER MASK -->
+    <section class="hero" id="hero">
+        <!-- 1. The static background image -->
+        <div class="hero-static-bg">
+            <img src="images/creative-hero-static.webp" alt="Creative Design Background">
+        </div>
+
+        <!-- 2. The video layer that gets masked out to form the 'squiggle' -->
+        <div class="hero-video-mask">
+            <video autoplay muted loop playsinline preload="auto">
+                <source src="videos/creative-reel.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- 3. Text Overlay -->
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Wildflower Creative</h1>
+            <p class="hero-subtitle">Modern web design and captivating content tailored for your brand.</p>
+            <button class="hero-cta">Explore Services</button>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <p>Scroll to explore</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WEB DESIGN & PORTFOLIO -->
+    <section id="web-design" class="creative-section">
+        <h2 class="section-title">Web Design</h2>
+        <div class="section-content" data-scroll>
+            <p>We build modern, responsive, and uniquely animated Webflow-style experiences to elevate your online presence.</p>
+        </div>
+    </section>
+
+    <section id="portfolio" class="creative-section alternate-bg">
+        <h2 class="section-title">Design Portfolio</h2>
+        <div class="section-content" data-scroll>
+            <p>[Insert your web design portfolio grid here]</p>
+        </div>
+    </section>
+
+    <!-- CONTENT DESIGN -->
+    <section id="content-design" class="creative-section">
+        <h2 class="section-title">Content Design</h2>
+        <div class="section-content" data-scroll>
+            <p>From rebranding to visual storytelling, we shape how the world sees your brand.</p>
+        </div>
+    </section>
+
+    <section id="photography" class="creative-section alternate-bg">
+        <h2 class="section-title">Photography</h2>
+        <div class="section-content" data-scroll>
+            <p>[Insert your photography showcases here]</p>
+        </div>
+    </section>
+
+    <section id="content-creation" class="creative-section">
+        <h2 class="section-title">Content Creation</h2>
+        <div class="section-content" data-scroll>
+            <p>[Insert your video ad and promotional content showcases here]</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Wildflower Creative. A division of Wildflower Films.</p>
+    </footer>
+
+    <script src="productionscript.js"></script>
+</body>
+</html>

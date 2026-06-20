@@ -1,6 +1,6 @@
-# EmailJS Setup Guide - 11:11 Weddings Booking Form
+# EmailJS Setup Guide - Wildflower Films Booking Form
 
-This guide shows how to configure EmailJS so booking requests for **11:11 Weddings** are emailed to you automatically. **No backend hosting required!**
+This guide shows how to configure EmailJS so booking requests for **Wildflower Films** are emailed to you automatically. **No backend hosting required!**
 
 ## Step 1: Sign Up for EmailJS (Free)
 1. Go to https://www.emailjs.com
@@ -11,7 +11,7 @@ This guide shows how to configure EmailJS so booking requests for **11:11 Weddin
 ## Step 2: Get Your Public Key
 1. After login, go to **Account** (top right)
 2. Copy your **Public Key** (you'll need this)
-3. Open `11:11 Weddings.html` and find this line:
+3. Open `index.html` and find this line:
    ```javascript
    emailjs.init('YOUR_PUBLIC_KEY');
    ```
