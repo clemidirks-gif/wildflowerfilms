@@ -229,17 +229,17 @@ body {
 =============================== */
 
 .hero-fluid-bg {
-    position: absolute;
-    inset: 0;
-    background: lime;
-    z-index: 0;
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    border-radius:40px;
+    z-index:1;
 }
 
 #fluid-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-    background: blue;
+    width:100%;
+    height:100%;
+    display:block;
 }
 
 .hero-overlay {
