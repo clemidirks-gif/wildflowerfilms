@@ -31,7 +31,26 @@ body {
 }
 
 .hero {
-    filter: url(#warp);
+    position: relative;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    /* spotlight shape */
+    background: radial-gradient(
+        circle 75px at var(--mouseX, 50%) var(--mouseY, 50%),
+        rgba(255,255,255,0.9),
+        rgba(255,255,255,0)
+    );
+
+    mix-blend-mode: screen;
+
+    /* THIS is your “mask feel” */
+    mask-image: radial-gradient(circle, black 60%, transparent 100%);
+    mask-repeat: no-repeat;
 }
 
 /* ===============================
