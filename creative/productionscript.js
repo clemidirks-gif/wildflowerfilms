@@ -1,5 +1,5 @@
 console.log("Script loaded");
-console.log("THREE:", typeof THREE);
+console.log("THREE:", window.THREE);
 // ===============================
 // HERO CTA SCROLL
 // ===============================
@@ -160,7 +160,7 @@ window.addEventListener('load', () => {
         heroRight.clientHeight
     );
 
-    renderer.setClearColor(0xff0000);
+    renderer.setClearColor(0x001007);
 
     renderer.render(
         new THREE.Scene(),
