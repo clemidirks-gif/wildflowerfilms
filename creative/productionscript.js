@@ -250,7 +250,7 @@ const fragmentShader = `
 
 // Load your image here
 const textureLoader = new THREE.TextureLoader();
-const myTexture = textureLoader.load('images/bgPaint.png'); 
+const myTexture = textureLoader.load('images/bgCover.jpg'); 
 
 const material = new THREE.ShaderMaterial({
     vertexShader,
