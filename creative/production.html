@@ -8,86 +8,63 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <svg style="position:absolute; width:0; height:0;">
-  <filter id="warp">
-    <feTurbulence
-      type="fractalNoise"
-      baseFrequency="0.01"
-      numOctaves="2"
-      seed="2"
-    >
-      <animate
-        attributeName="baseFrequency"
-        values="0.01;0.015;0.01"
-        dur="6s"
-        repeatCount="indefinite"
-      />
-    </feTurbulence>
-
-    <feDisplacementMap
-      in="SourceGraphic"
-      scale="25"
-      xChannelSelector="R"
-      yChannelSelector="G"
-    />
-  </filter>
-</svg>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo-wrapper">
-                <div class="logo">
-                    <!-- Update with your new division logo if you have one -->
-                    <img src="images/wildflower-films-logo.png" alt="Wildflower Creative Logo">
-                </div>
+    <!-- HERO SECTION (Split Layout) -->
+    <section class="hero-grid" id="hero">
+        
+        <!-- LEFT COLUMN: Info -->
+        <div class="hero-left">
+            <div class="logo">
+                <img src="images/wildflower-films-logo.png" alt="Wildflower Creative Logo">
             </div>
-            <ul class="nav-menu">
-                <li><a href="https://www.wildflowerfilms.co.za">Back to Wildflower Films</a></li>
-                <li class="dropdown">
-                    <a href="#web-design">Web Design ▾</a>
-                    <div class="dropdown-content">
-                        <a href="#portfolio">Portfolio</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#content-design">Content Design ▾</a>
-                    <div class="dropdown-content">
-                        <a href="#photography">Photography</a>
-                        <a href="#content-creation">Content Creation</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- HERO SECTION WITH HOVER MASK -->
-    <section class="hero" id="hero">
-        <!-- 1. The static background image -->
-        <div class="hero-static-bg">
-            <img src="images/bg.png" alt="Creative Design Background">
-        </div>
+            <div class="hero-content">
+                <h1 class="hero-title">Wildflower Creative</h1>
+                <p class="hero-subtitle">Modern web design and captivating content tailored for your brand.</p>
+                <button class="hero-cta">Explore Services</button>
+            </div>
 
-        <!-- 2. The video layer that gets masked out to form the 'squiggle' -->
-        <div class="hero-video-mask">
-            <video autoplay muted loop playsinline preload="auto">
-                <source src="videos/heroimage-video.mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <!-- 3. Text Overlay -->
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Wildflower Creative</h1>
-            <p class="hero-subtitle">Modern web design and captivating content tailored for your brand.</p>
-            <button class="hero-cta">Explore Services</button>
             <div class="scroll-indicator">
                 <div class="mouse"></div>
                 <p>Scroll to explore</p>
             </div>
         </div>
+
+        <!-- RIGHT COLUMN: Nav & Image -->
+        <div class="hero-right">
+            <!-- Navigation sits inside the right column -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <ul class="nav-menu">
+                        <li><a href="https://www.wildflowerfilms.co.za">Back to Wildflower Films</a></li>
+                        <li class="dropdown">
+                            <a href="#web-design">Web Design ▾</a>
+                            <div class="dropdown-content">
+                                <a href="#portfolio">Portfolio</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#content-design">Content Design ▾</a>
+                            <div class="dropdown-content">
+                                <a href="#photography">Photography</a>
+                                <a href="#content-creation">Content Creation</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- The static background image -->
+            <div class="hero-static-bg">
+                <img src="images/bg.png" alt="Creative Design Background">
+            </div>
+
+            <!-- Text Overlay for better nav readability if needed -->
+            <div class="hero-overlay"></div>
+        </div>
+
     </section>
 
     <!-- WEB DESIGN & PORTFOLIO -->
