@@ -558,17 +558,21 @@ allowing the next section to slide over it.
     background-position: center;
 }
 
+#portfolio.stack-section {
+    overflow: visible; /* Allows the sticky cards inside to work correctly */
+}
+
 /* Set stacking order and background images for each card */
 #portfolio-card-1 {
-    background-image: url('https://images.unsplash.com/photo-1517694712202-1428bc38a5a5?q=80&w=2070');
+    background-image: url('images/portfolio-image-1.png');
     z-index: 11; /* Must be higher than the section z-indexes */
 }
 #portfolio-card-2 {
-    background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726c?q=80&w=2070');
+    background-image: url('images/portfolio-image-2png.png');
     z-index: 12;
 }
 #portfolio-card-3 {
-    background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3a800a?q=80&w=2070');
+    background-image: url('images/portfolio-image-1.png');
     z-index: 13;
 }
 
