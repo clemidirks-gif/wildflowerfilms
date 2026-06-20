@@ -290,25 +290,37 @@ function animate(time){
 animate();
 });
 // ===============================
-// NEW CUSTOM CURSOR SCRIPT
+// NEW CUSTOM CURSOR SCRIPT (Section-Scoped)
 // ===============================
 const customCursor = document.querySelector('.cursor');
+const portfolioSection = document.querySelector('#portfolio');
 const allLinks = document.querySelectorAll('a');
 
-// Follow mouse position
-document.addEventListener('mousemove', e => {
-    if (customCursor) {
+if (customCursor && portfolioSection) {
+    // 1. Activate custom cursor when entering the portfolio section
+    portfolioSection.addEventListener('mouseenter', () => {
+        document.body.classList.add('portfolio-cursor-active');
+    });
+
+    // 2. Deactivate custom cursor when leaving the portfolio section
+    portfolioSection.addEventListener('mouseleave', () => {
+        document.body.classList.remove('portfolio-cursor-active');
+    });
+
+    // 3. Follow mouse position (this can always run)
+    document.addEventListener('mousemove', e => {
         customCursor.style.left = e.clientX + 'px';
         customCursor.style.top = e.clientY + 'px';
-    }
-});
+    });
 
-// Add 'link-hover' class to cursor when over any link
-allLinks.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        if (customCursor) customCursor.classList.add('link-hover');
+    // 4. Add 'link-hover' class to cursor when over any link
+    // (This will only be visible when the cursor itself is visible)
+    allLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            customCursor.classList.add('link-hover');
+        });
+        link.addEventListener('mouseleave', () => {
+            customCursor.classList.remove('link-hover');
+        });
     });
-    link.addEventListener('mouseleave', () => {
-        if (customCursor) customCursor.classList.remove('link-hover');
-    });
-});
+}
