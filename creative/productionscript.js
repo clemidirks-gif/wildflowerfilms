@@ -196,7 +196,7 @@ const vertexShader = `
 const fragmentShader = `
     uniform float uTime;
     uniform vec2 uMouse;
-    uniform sampler2D uTexture; // We bring the image in here
+    uniform sampler2D uTexture;
     varying vec2 vUv;
 
     float random(vec2 st){
@@ -218,20 +218,26 @@ const fragmentShader = `
         vec2 uv = vUv;
         float t = uTime * 0.15;
         
-        // Background slow noise movement
-        float n = noise(uv * 3.0 + t);
-        uv += (n - .5) * 0.05; // Reduced the intensity so it doesn't warp the image too much by default
-
-        // Cursor distortion
+        // 1. Calculate the cursor mask FIRST
         float mouseDist = distance(uv, uMouse);
         
-        // This controls the size of the hover radius
+        // smoothstep(radius, 0., distance) 
+        // This makes 'cursor' 1.0 at the mouse center, and fades to 0.0 at a distance of 0.4
         float cursor = smoothstep(.4, 0., mouseDist); 
         
-        // This applies the liquid ripple effect based on the mouse
+        // 2. Calculate the noise
+        float n = noise(uv * 3.0 + t);
+        
+        // 3. Apply ALL distortions multiplied by 'cursor'
+        // This ensures NO movement happens where the cursor is 0.0 (unhovered areas)
+        
+        // Organic liquid wobble (only on hover)
+        uv += cursor * (n - .5) * 0.05; 
+        
+        // Circular ripple effect (only on hover)
         uv += cursor * sin(mouseDist * 25.0 - uTime) * .05;
 
-        // Instead of mixing colors, we sample the actual image at the distorted UV coordinates
+        // 4. Draw the image with the hovered UVs
         vec4 imageColor = texture2D(uTexture, uv);
 
         gl_FragColor = imageColor;
@@ -244,7 +250,7 @@ const fragmentShader = `
 
 // Load your image here
 const textureLoader = new THREE.TextureLoader();
-const myTexture = textureLoader.load('images/bgPaint.png'); 
+const myTexture = textureLoader.load('YOUR_IMAGE_PATH_HERE.png'); 
 
 const material = new THREE.ShaderMaterial({
     vertexShader,
@@ -252,7 +258,7 @@ const material = new THREE.ShaderMaterial({
     uniforms: {
         uTime: { value: 0 },
         uMouse: { value: mouse },
-        uTexture: { value: myTexture } // Pass the image to the shader
+        uTexture: { value: myTexture } 
     }
 });
 
