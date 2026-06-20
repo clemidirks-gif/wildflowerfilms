@@ -162,10 +162,30 @@ window.addEventListener('load', () => {
 
     renderer.setClearColor(0x001007);
 
-    renderer.render(
-        new THREE.Scene(),
-        new THREE.PerspectiveCamera()
-    );
+const scene = new THREE.Scene();
 
-    console.log("Renderer created");
+const camera = new THREE.PerspectiveCamera(
+    75,
+    heroRight.clientWidth / heroRight.clientHeight,
+    0.1,
+    1000
+);
+
+camera.position.z = 2;
+
+const geometry = new THREE.PlaneGeometry(2, 2);
+
+const material = new THREE.MeshBasicMaterial({
+    color: 0x2f6b45
 });
+
+const plane = new THREE.Mesh(
+    geometry,
+    material
+);
+
+scene.add(plane);
+
+renderer.render(scene, camera);
+
+console.log("Renderer created");
