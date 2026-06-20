@@ -289,3 +289,26 @@ function animate(time){
 
 animate();
 });
+// ===============================
+// NEW CUSTOM CURSOR SCRIPT
+// ===============================
+const customCursor = document.querySelector('.cursor');
+const allLinks = document.querySelectorAll('a');
+
+// Follow mouse position
+document.addEventListener('mousemove', e => {
+    if (customCursor) {
+        customCursor.style.left = e.clientX + 'px';
+        customCursor.style.top = e.clientY + 'px';
+    }
+});
+
+// Add 'link-hover' class to cursor when over any link
+allLinks.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        if (customCursor) customCursor.classList.add('link-hover');
+    });
+    link.addEventListener('mouseleave', () => {
+        if (customCursor) customCursor.classList.remove('link-hover');
+    });
+});

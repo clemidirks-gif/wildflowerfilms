@@ -4,103 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wildflower Creative | Web & Content Design</title>
-
     <link rel="stylesheet" href="productionstyle.css">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- NEW: Custom Cursor Element -->
+    <div class="cursor">
+        <div class="cursor-icon">&#x2197;</div> <!-- Unicode for North-East Arrow -->
+    </div>
+
     <!-- HERO SECTION -->
     <section class="hero-grid" id="hero">
-
         <!-- LEFT COLUMN -->
         <div class="hero-left">
-
             <div class="logo">
                 <img src="images/wildflower-films-logo.png" alt="Wildflower Creative Logo">
             </div>
-
             <div class="hero-content">
                 <h1 class="hero-title">Wildflower Creative</h1>
-
                 <p class="hero-subtitle">
                     Modern web design and captivating content tailored for your brand.
                 </p>
-
                 <button class="hero-cta">
                     Explore Services
                 </button>
             </div>
-
             <div class="scroll-indicator">
                 <div class="mouse"></div>
                 <p>Scroll to explore</p>
             </div>
-
         </div>
 
         <!-- RIGHT COLUMN -->
         <div class="hero-right">
-
             <nav class="navbar">
-
                 <div class="nav-container">
-
                     <ul class="nav-menu">
-
                         <li>
-                            <a href="https://www.wildflowerfilms.co.za">
-                                Back to Wildflower Films
-                            </a>
+                            <a href="https://www.wildflowerfilms.co.za">Back to Wildflower Films</a>
                         </li>
-
                         <li class="dropdown">
-                            <a href="#web-design">
-                                Web Design ▾
-                            </a>
-
+                            <a href="#web-design">Web Design ▾</a>
                             <div class="dropdown-content">
-                                <a href="#portfolio">
-                                    Portfolio
-                                </a>
+                                <a href="#portfolio">Portfolio</a>
                             </div>
                         </li>
-
                         <li class="dropdown">
-                            <a href="#content-design">
-                                Content Design ▾
-                            </a>
-
+                            <a href="#content-design">Content Design ▾</a>
                             <div class="dropdown-content">
-                                <a href="#photography">
-                                    Photography
-                                </a>
-
-                                <a href="#content-creation">
-                                    Content Creation
-                                </a>
+                                <a href="#photography">Photography</a>
+                                <a href="#content-creation">Content Creation</a>
                             </div>
                         </li>
-
                     </ul>
-
                 </div>
-
             </nav>
-
             <div class="hero-fluid-bg">
-    <canvas id="fluid-canvas"></canvas>
-</div>
-
+                <canvas id="fluid-canvas"></canvas>
+            </div>
             <div class="hero-overlay"></div>
-
         </div>
-
     </section>
 
     <!-- STACKING SECTIONS WRAPPER -->
@@ -108,93 +74,72 @@
 
         <!-- WEB DESIGN -->
         <section id="web-design" class="creative-section stack-section">
-
-            <h2 class="section-title">
-                Web Design
-            </h2>
-
+            <h2 class="section-title">Web Design</h2>
             <div class="section-content" data-scroll>
                 <p>
                     We build modern, responsive, and uniquely animated
                     Webflow-style experiences to elevate your online presence.
                 </p>
             </div>
-
         </section>
 
         <!-- PORTFOLIO -->
         <section id="portfolio" class="creative-section alternate-bg stack-section">
-
-            <h2 class="section-title">
-                Design Portfolio
-            </h2>
-
-            <div class="section-content" data-scroll>
-                <p>
-                    [Insert your web design portfolio grid here]
-                </p>
+            <h2 class="section-title">Design Portfolio</h2>
+            
+            <!-- NEW: This is the container for the new scrolling portfolio cards -->
+            <div class="card-stack-container">
+                <!-- Replace hrefs with your actual project links and IDs/backgrounds in CSS -->
+                <a href="#your-project-link-3" class="portfolio-card" id="portfolio-card-3">
+                    <h3>Project Three</h3>
+                    <p>A stunning e-commerce experience.</p>
+                </a>
+                <a href="#your-project-link-2" class="portfolio-card" id="portfolio-card-2">
+                    <h3>Project Two</h3>
+                    <p>An interactive portfolio for a photographer.</p>
+                </a>
+                <a href="#your-project-link-1" class="portfolio-card" id="portfolio-card-1">
+                    <h3>Project One</h3>
+                    <p>A sleek and modern corporate website.</p>
+                </a>
             </div>
-
         </section>
 
         <!-- CONTENT DESIGN -->
         <section id="content-design" class="creative-section stack-section">
-
-            <h2 class="section-title">
-                Content Design
-            </h2>
-
+            <h2 class="section-title">Content Design</h2>
             <div class="section-content" data-scroll>
                 <p>
                     From rebranding to visual storytelling,
                     we shape how the world sees your brand.
                 </p>
             </div>
-
         </section>
 
         <!-- PHOTOGRAPHY -->
         <section id="photography" class="creative-section alternate-bg stack-section">
-
-            <h2 class="section-title">
-                Photography
-            </h2>
-
+            <h2 class="section-title">Photography</h2>
             <div class="section-content" data-scroll>
-                <p>
-                    [Insert your photography showcases here]
-                </p>
+                <p>\[Insert your photography showcases here\]</p>
             </div>
-
         </section>
 
         <!-- CONTENT CREATION -->
         <section id="content-creation" class="creative-section stack-section">
-
-            <h2 class="section-title">
-                Content Creation
-            </h2>
-
+            <h2 class="section-title">Content Creation</h2>
             <div class="section-content" data-scroll>
-                <p>
-                    [Insert your video ad and promotional content showcases here]
-                </p>
+                <p>\[Insert your video ad and promotional content showcases here\]</p>
             </div>
-
         </section>
 
     </div>
 
     <!-- FOOTER -->
     <footer class="footer">
-        <p>
-            &copy; 2026 Wildflower Creative.
-            A division of Wildflower Films.
-        </p>
+        <p>&copy; 2026 Wildflower Creative. A division of Wildflower Films.</p>
     </footer>
 
-
-<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
-<script src="productionscript.js?v=2"></script>
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+    <script src="productionscript.js?v=2"></script>
 </body>
 </html>
