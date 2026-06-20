@@ -61,3 +61,35 @@ document.querySelectorAll('[data-scroll]').forEach((el, i) => {
     el.style.transitionDelay = `${i * 80}ms`;
     revealObserver.observe(el);
 });
+
+const hero = document.querySelector('.hero');
+const feDisplacement = document.querySelector('feDisplacementMap');
+
+let currentScale = 0;
+let targetScale = 0;
+
+if (hero && feDisplacement) {
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+
+        // increase distortion near cursor movement
+        targetScale = 20 + (Math.abs(x - 0.5) + Math.abs(y - 0.5)) * 40;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+        targetScale = 20;
+    });
+
+    function animate() {
+        currentScale += (targetScale - currentScale) * 0.1;
+
+        feDisplacement.setAttribute('scale', currentScale.toFixed(2));
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+}

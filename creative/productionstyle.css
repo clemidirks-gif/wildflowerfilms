@@ -30,6 +30,10 @@ body {
     overflow-x: hidden;
 }
 
+.hero {
+    filter: url(#warp);
+}
+
 /* ===============================
    NAVIGATION & DROPDOWNS
 =============================== */
