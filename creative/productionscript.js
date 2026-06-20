@@ -181,7 +181,7 @@ window.addEventListener('load', () => {
 
 
 
-   // ===============================
+// ===============================
 // SHADER
 // ===============================
 
@@ -189,174 +189,97 @@ const vertexShader = `
     varying vec2 vUv;
     void main(){
         vUv = uv;
-        gl_Position =
-            vec4(position,1.0);
+        gl_Position = vec4(position,1.0);
     }
-    `;
+`;
 
 const fragmentShader = `
     uniform float uTime;
     uniform vec2 uMouse;
+    uniform sampler2D uTexture; // We bring the image in here
     varying vec2 vUv;
 
     float random(vec2 st){
-        return fract(
-            sin(dot(st.xy,
-            vec2(12.9898,78.233)))
-            *
-            43758.5453123
-        );
+        return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
     }
 
     float noise(vec2 st){
-        vec2 i=floor(st);
-        vec2 f=fract(st);
-        float a=random(i);
-        float b=random(i+vec2(1.,0.));
-        float c=random(i+vec2(0.,1.));
-        float d=random(i+vec2(1.,1.));
-        vec2 u =
-        f*f*(3.0-2.0*f);
-        return mix(a,b,u.x)
-        +(c-a)*u.y*(1.-u.x)
-        +(d-b)*u.x*u.y;
+        vec2 i = floor(st);
+        vec2 f = fract(st);
+        float a = random(i);
+        float b = random(i + vec2(1., 0.));
+        float c = random(i + vec2(0., 1.));
+        float d = random(i + vec2(1., 1.));
+        vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(a, b, u.x) + (c - a) * u.y * (1. - u.x) + (d - b) * u.x * u.y;
     }
 
     void main(){
-        vec2 uv=vUv;
-        float t=uTime*0.15;
-        float n =
-        noise(
-            uv*3.0+t
-        );
+        vec2 uv = vUv;
+        float t = uTime * 0.15;
+        
+        // Background slow noise movement
+        float n = noise(uv * 3.0 + t);
+        uv += (n - .5) * 0.05; // Reduced the intensity so it doesn't warp the image too much by default
 
-        uv +=
-        (n-.5)*0.25;
+        // Cursor distortion
+        float mouseDist = distance(uv, uMouse);
+        
+        // This controls the size of the hover radius
+        float cursor = smoothstep(.4, 0., mouseDist); 
+        
+        // This applies the liquid ripple effect based on the mouse
+        uv += cursor * sin(mouseDist * 25.0 - uTime) * .05;
 
-        // cursor distortion
-        float mouseDist =
-        distance(
-            uv,
-            uMouse
-        );
-        float cursor =
-        smoothstep(
-            .5,
-            0.,
-            mouseDist
-        );
-        uv += cursor*
-        sin(mouseDist*25.0-uTime)
-        *.05;
+        // Instead of mixing colors, we sample the actual image at the distorted UV coordinates
+        vec4 imageColor = texture2D(uTexture, uv);
 
-        // ==========================================
-        // NEW COLORS (Inspired by Wildflower image)
-        // ==========================================
-        vec3 colorBase = vec3(0.02, 0.05, 0.04);      // Dark, almost black, green
-        vec3 colorGreen = vec3(0.1, 0.35, 0.25);       // Deep emerald green
-        vec3 colorLight = vec3(0.85, 0.95, 0.9);      // Off-white, slightly green
-        vec3 colorGold = vec3(0.8, 0.6, 0.2);          // Muted gold/ochre
-        vec3 colorHighlight = vec3(1.0, 0.9, 0.7);     // Bright gold for cursor
-
-        float c1 =
-        sin(
-        uv.x*5.0+n*5.0+t
-        )
-        *.5+.5;
-        float c2 =
-        sin(
-        uv.y*6.0-n*4.0+t
-        )
-        *.5+.5;
-
-        // Mixing the new colors
-        vec3 color =
-        mix(
-            colorBase,
-            colorGreen,
-            c1
-        );
-        color =
-        mix(
-            color,
-            colorLight,
-            c2
-        );
-        color =
-        mix(
-            color,
-            colorGold,
-            n
-        );
-        color =
-        mix(
-            color,
-            colorHighlight,
-            cursor
-        );
-
-        gl_FragColor =
-        vec4(
-            color,
-            1.0
-        );
+        gl_FragColor = imageColor;
     }
-    `;
+`;
 
-const material =
-new THREE.ShaderMaterial({
-vertexShader,
-fragmentShader,
-uniforms:{
-uTime:{
-value:0
-            },
-uMouse:{
-value:mouse
-            }
-        }
-    });
+// ===============================
+// LOAD TEXTURE & MATERIAL
+// ===============================
 
-const geometry =
-new THREE.PlaneGeometry(2,2);
+// Load your image here
+const textureLoader = new THREE.TextureLoader();
+const myTexture = textureLoader.load('images/bgPaint.png'); 
 
-const plane =
-new THREE.Mesh(
-geometry,
-material
-    );
+const material = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+        uTime: { value: 0 },
+        uMouse: { value: mouse },
+        uTexture: { value: myTexture } // Pass the image to the shader
+    }
+});
+
+const geometry = new THREE.PlaneGeometry(2, 2);
+const plane = new THREE.Mesh(geometry, material);
 scene.add(plane);
 
 // ===============================
 // RESIZE
 // ===============================
 function resize(){
-renderer.setSize(
-heroRight.clientWidth,
-heroRight.clientHeight
-        );
-    }
+    renderer.setSize(heroRight.clientWidth, heroRight.clientHeight);
+}
+
 resize();
-window.addEventListener(
-"resize",
-resize
-    );
+window.addEventListener("resize", resize);
 
 // ===============================
 // ANIMATION
 // ===============================
 function animate(time){
-material.uniforms.uTime.value =
-time * .001;
-material.uniforms.uMouse.value =
-mouse;
-renderer.render(
-scene,
-camera
-        );
-requestAnimationFrame(
-animate
-        );
-    }
+    material.uniforms.uTime.value = time * .001;
+    material.uniforms.uMouse.value = mouse;
+    
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+}
+
 animate();
 });
