@@ -189,3 +189,4 @@ scene.add(plane);
 renderer.render(scene, camera);
 
 console.log("Renderer created");
+});
