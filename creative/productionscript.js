@@ -181,290 +181,182 @@ window.addEventListener('load', () => {
 
 
 
-    // ===============================
-    // SHADER
-    // ===============================
+   // ===============================
+// SHADER
+// ===============================
 
-
-    const vertexShader = `
-
+const vertexShader = `
     varying vec2 vUv;
-
     void main(){
-
         vUv = uv;
-
         gl_Position =
             vec4(position,1.0);
-
     }
-
     `;
 
-
-
-    const fragmentShader = `
-
+const fragmentShader = `
     uniform float uTime;
     uniform vec2 uMouse;
-
     varying vec2 vUv;
 
-
-
     float random(vec2 st){
-
         return fract(
             sin(dot(st.xy,
             vec2(12.9898,78.233)))
             *
             43758.5453123
         );
-
     }
 
-
-
     float noise(vec2 st){
-
         vec2 i=floor(st);
         vec2 f=fract(st);
-
-
         float a=random(i);
         float b=random(i+vec2(1.,0.));
         float c=random(i+vec2(0.,1.));
         float d=random(i+vec2(1.,1.));
-
-
         vec2 u =
         f*f*(3.0-2.0*f);
-
-
         return mix(a,b,u.x)
         +(c-a)*u.y*(1.-u.x)
         +(d-b)*u.x*u.y;
-
     }
 
-
-
     void main(){
-
         vec2 uv=vUv;
-
-
         float t=uTime*0.15;
-
-
         float n =
         noise(
             uv*3.0+t
         );
 
-
         uv +=
         (n-.5)*0.25;
 
-
-
         // cursor distortion
-
         float mouseDist =
         distance(
             uv,
             uMouse
         );
-
-
         float cursor =
         smoothstep(
             .5,
             0.,
             mouseDist
         );
-
-
         uv += cursor*
         sin(mouseDist*25.0-uTime)
         *.05;
 
-
-
-        // COLORS
-
-
-        vec3 white =
-        vec3(1.0,.95,.9);
-
-
-        vec3 blue =
-        vec3(.1,.7,1.0);
-
-
-        vec3 pink =
-        vec3(1.0,.15,.6);
-
-
-        vec3 purple =
-        vec3(.45,.1,1.0);
-
-
-        vec3 orange =
-        vec3(1.0,.55,.05);
-
-
+        // ==========================================
+        // NEW COLORS (Inspired by Wildflower image)
+        // ==========================================
+        vec3 colorBase = vec3(0.02, 0.05, 0.04);      // Dark, almost black, green
+        vec3 colorGreen = vec3(0.1, 0.35, 0.25);       // Deep emerald green
+        vec3 colorLight = vec3(0.85, 0.95, 0.9);      // Off-white, slightly green
+        vec3 colorGold = vec3(0.8, 0.6, 0.2);          // Muted gold/ochre
+        vec3 colorHighlight = vec3(1.0, 0.9, 0.7);     // Bright gold for cursor
 
         float c1 =
         sin(
         uv.x*5.0+n*5.0+t
         )
         *.5+.5;
-
-
         float c2 =
         sin(
         uv.y*6.0-n*4.0+t
         )
         *.5+.5;
 
-
-
+        // Mixing the new colors
         vec3 color =
         mix(
-            white,
-            blue,
+            colorBase,
+            colorGreen,
             c1
         );
-
-
         color =
         mix(
             color,
-            pink,
+            colorLight,
             c2
         );
-
-
         color =
         mix(
             color,
-            purple,
+            colorGold,
             n
         );
-
-
         color =
         mix(
             color,
-            orange,
+            colorHighlight,
             cursor
         );
-
-
 
         gl_FragColor =
         vec4(
             color,
             1.0
         );
-
     }
-
     `;
 
-
-
-    const material =
-    new THREE.ShaderMaterial({
-
-        vertexShader,
-        fragmentShader,
-
-        uniforms:{
-
-            uTime:{
-                value:0
+const material =
+new THREE.ShaderMaterial({
+vertexShader,
+fragmentShader,
+uniforms:{
+uTime:{
+value:0
             },
-
-            uMouse:{
-                value:mouse
+uMouse:{
+value:mouse
             }
-
         }
-
     });
 
+const geometry =
+new THREE.PlaneGeometry(2,2);
 
+const plane =
+new THREE.Mesh(
+geometry,
+material
+    );
+scene.add(plane);
 
-    const geometry =
-    new THREE.PlaneGeometry(2,2);
-
-
-
-    const plane =
-    new THREE.Mesh(
-        geometry,
-        material
+// ===============================
+// RESIZE
+// ===============================
+function resize(){
+renderer.setSize(
+heroRight.clientWidth,
+heroRight.clientHeight
+        );
+    }
+resize();
+window.addEventListener(
+"resize",
+resize
     );
 
-
-    scene.add(plane);
-
-
-
-    // ===============================
-    // RESIZE
-    // ===============================
-
-    function resize(){
-
-        renderer.setSize(
-            heroRight.clientWidth,
-            heroRight.clientHeight
+// ===============================
+// ANIMATION
+// ===============================
+function animate(time){
+material.uniforms.uTime.value =
+time * .001;
+material.uniforms.uMouse.value =
+mouse;
+renderer.render(
+scene,
+camera
         );
-
+requestAnimationFrame(
+animate
+        );
     }
-
-
-    resize();
-
-    window.addEventListener(
-        "resize",
-        resize
-    );
-
-
-
-    // ===============================
-    // ANIMATION
-    // ===============================
-
-
-    function animate(time){
-
-        material.uniforms.uTime.value =
-        time * .001;
-
-
-        material.uniforms.uMouse.value =
-        mouse;
-
-
-        renderer.render(
-            scene,
-            camera
-        );
-
-
-        requestAnimationFrame(
-            animate
-        );
-
-    }
-
-
-    animate();
-
-
+animate();
 });
