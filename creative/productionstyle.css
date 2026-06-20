@@ -456,14 +456,18 @@ Re-apply the sticky behavior ONLY to the sections AFTER the portfolio
 }
 
 /* Set stacking order and background images for each card */
+/* CORRECT Z-INDEX LOGIC */
+/* The first card has the lowest z-index so it can be covered */
 #portfolio-card-1 {
     background-image: url('images/portfolio-image-1.png');
     z-index: 11;
 }
+/* The second card can cover the first */
 #portfolio-card-2 {
     background-image: url('images/portfolio-image-2png.png');
     z-index: 12;
 }
+/* The third card can cover the second */
 #portfolio-card-3 {
     background-image: url('images/portfolio-image-1.png');
     z-index: 13;
