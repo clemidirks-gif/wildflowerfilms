@@ -50,6 +50,24 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.nav-pill {
+    background: #fff;
+    color: #000 !important;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.nav-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
 
 .logo-wrapper {
     position: relative;
