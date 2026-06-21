@@ -12,73 +12,34 @@ body {
     background-color: #fcfcfc;
     overflow-x: hidden;
 }
-/* --- Dynamic Uploadable Logo Styles --- */
-.logo-container {
-    position: relative;
+/* --- Static Logo Styles --- */
+.logo-link {
     display: inline-block;
-    z-index: 101; /* Ensure it stays above overlays */
+    transition: transform 0.2s ease;
 }
 
-.logo-label {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 6px;
-    transition: outline 0.2s ease, transform 0.2s ease;
-}
-
-/* Subtle dash outline when hovering to signal it's interactive */
-.logo-label:hover {
-    outline: 2px dashed #facc15;
-    outline-offset: 4px;
-    transform: scale(1.03);
+.logo-link:hover {
+    transform: scale(1.05); /* Soft, professional pop on hover */
 }
 
 .logo-img {
-    max-height: 45px;
+    max-height: 45px; /* Ensures the logo sits perfectly inside your header */
     width: auto;
-    object-fit: contain;
     display: block;
+    object-fit: contain;
 }
 
-/* Adjust size limit for the footer logo */
-.footer-logo-container .logo-img {
-    max-height: 65px;
-    margin: 0 auto;
-}
-
-/* Visual cue appearing on hover to tell the user they can upload */
-.upload-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.85); /* Deep dark blue overlay */
-    color: #facc15;
-    font-size: 0.7rem;
-    font-weight: 600;
+.footer-logo-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    pointer-events: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
-.logo-label:hover .upload-overlay {
-    opacity: 1;
-}
-
-/* Utility to toggle between text fallback and uploaded image */
-.hidden {
-    display: none !important;
+.footer-logo-img {
+    max-height: 75px; /* Slightly larger presence in the dark footer */
+    width: auto;
+    display: block;
+    object-fit: contain;
 }
 
 /* Custom Cursor */
