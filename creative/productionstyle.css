@@ -105,21 +105,14 @@ body {
 }
 
 .hero-title {
-    font-size: 4rem; /* Reduced for better fit */
-    font-weight: 200;
+    font-size: 4rem;
+    font-weight: 600;
     margin-bottom: 0.6rem;
-    font-family: 'The Nautigal', cursive;
+    font-family: 'Rethink Sans', serif;
     line-height: 1.2; /* Increased for better spacing between lines */
     color: var(--text-primary);
 }
 
-
-.hero-subtitle {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    max-width: 450px;
-}
 
 .hero-cta {
     padding: 0.9rem 1.9rem;
