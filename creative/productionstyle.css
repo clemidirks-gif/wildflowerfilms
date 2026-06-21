@@ -327,7 +327,6 @@ body {
 
 /* CHANGE 1: Remove the 'sticky' property from all sections initially */
 .stack-section {
-    /* position: sticky; */ /* <-- REMOVED */
     top: 0;
     min-height: 100vh;
     width: 100%;
@@ -336,13 +335,10 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 8rem 2rem;
-    position: relative; /* <-- ADDED for z-index context */
+    padding: 10rem 2rem;
+    position: relative;
 }
 
-/*
-Create alternating backgrounds
-*/
 .stack-section {
     background: var(--primary-dark);
 }
@@ -350,11 +346,6 @@ Create alternating backgrounds
     background: var(--secondary-dark);
 }
 
-/*
-The magic:
-Re-apply the sticky behavior ONLY to the sections AFTER the portfolio
-*/
-/* CHANGE 2: Target the sections after portfolio to make them sticky */
 #content-design,
 #photography,
 #content-creation {
@@ -363,15 +354,11 @@ Re-apply the sticky behavior ONLY to the sections AFTER the portfolio
     box-shadow: 0 -20px 50px rgba(0,0,0,0.35);
 }
 
-
-/* Re-apply margin-bottom to make sections stack */
-#portfolio,
 #content-design,
 #photography,
 #content-creation:not(:last-child) {
     margin-bottom: 100vh;
 }
-
 
 /* Layer order for the sections AFTER portfolio */
 #content-design { z-index: 3; }
@@ -455,19 +442,16 @@ Re-apply the sticky behavior ONLY to the sections AFTER the portfolio
     background-position: center;
 }
 
-/* Set stacking order and background images for each card */
-/* CORRECT Z-INDEX LOGIC */
-/* The first card has the lowest z-index so it can be covered */
 #portfolio-card-1 {
     background-image: url('images/portfolio-image-1.png');
     z-index: 11;
 }
-/* The second card can cover the first */
+
 #portfolio-card-2 {
     background-image: url('images/portfolio-image-2png.png');
     z-index: 12;
 }
-/* The third card can cover the second */
+
 #portfolio-card-3 {
     background-image: url('images/portfolio-image-1.png');
     z-index: 13;
@@ -483,15 +467,14 @@ Re-apply the sticky behavior ONLY to the sections AFTER the portfolio
 }
 
 /* ===============================
-   CUSTOM CURSOR STYLES (Now scoped)
+   CUSTOM CURSOR STYLES 
 =============================== */
-/* CHANGE 3: Only hide the default cursor when inside the portfolio section */
+
 body.portfolio-cursor-active,
 body.portfolio-cursor-active a {
     cursor: none;
 }
 
-/* The custom cursor is always present, but hidden by default */
 .cursor {
     position: fixed;
     width: 40px;
@@ -507,10 +490,9 @@ body.portfolio-cursor-active a {
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    opacity: 0; /* Hidden by default */
+    opacity: 0;
 }
 
-/* Make the cursor visible only when the body has the special class */
 body.portfolio-cursor-active .cursor {
     opacity: 1;
 }
@@ -523,9 +505,9 @@ body.portfolio-cursor-active .cursor {
 }
 
 .cursor.link-hover {
-    width: 80px;
-    height: 80px;
-    background-color: rgba(128, 0, 128, 0.6);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(53, 106, 15, 0.8);
     border-color: transparent;
 }
 .cursor.link-hover .cursor-icon {
