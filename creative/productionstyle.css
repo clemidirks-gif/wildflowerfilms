@@ -105,9 +105,9 @@ body {
 }
 
 .hero-title {
-    font-size: 4rem;
-    font-weight: 600;
-    margin-bottom: 0.6rem;
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
     font-family: 'Rethink Sans', serif;
     line-height: 1.2; /* Increased for better spacing between lines */
     color: var(--text-primary);
