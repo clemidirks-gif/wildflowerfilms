@@ -106,15 +106,15 @@ body {
 
 .hero-title {
     font-size: 3.5rem;
-    font-weight: 500;
-    margin-bottom: 0.4rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
     font-family: 'Rethink Sans', serif;
     line-height: 1.2; /* Increased for better spacing between lines */
     color: var(--text-primary);
 }
 #dynamic-word{
         font-family: 'The Nautigal', cursive;
-        font-size: 4.0rem;
+        font-size: 5.0rem;
 }
 
 .hero-cta {
