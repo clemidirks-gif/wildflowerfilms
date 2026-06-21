@@ -324,3 +324,51 @@ if (customCursor && portfolioSection) {
         });
     });
 }
+
+// ====================================
+// UPDATED: DYNAMIC HERO TEXT TYPING EFFECT
+// ====================================
+document.addEventListener("DOMContentLoaded", function() {
+    // Target the new ID for the changing word
+    const dynamicWordElement = document.getElementById("dynamic-word");
+    
+    if (dynamicWordElement) {
+        // Provide the list of words you want to cycle through
+        const words = ["Web Design", "Brand Design", "Creative Content"];
+
+        // Variables to track the position and state
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            const typeSpeed = 150;
+            const deleteSpeed = 100;
+            const pauseTime = 2000;
+
+            // Typing or deleting logic
+            if (isDeleting) {
+                dynamicWordElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                dynamicWordElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            // Switch state when a word is fully typed or deleted
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => isDeleting = true, pauseTime);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length; 
+            }
+
+            const speed = isDeleting ? deleteSpeed : typeSpeed;
+            setTimeout(type, speed);
+        }
+
+        // Start the animation
+        type();
+    }
+});

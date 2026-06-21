@@ -52,6 +52,31 @@ body {
     position: relative;
     z-index: 10;
 }
+/* New styles for the dynamic text effect */
+#dynamic-word {
+    position: relative; /* Required for the cursor positioning */
+}
+
+/* Blinking cursor effect */
+#dynamic-word::after {
+    content: '|';
+    position: absolute;
+    right: -1.5rem; /* Adjust this value to position the cursor correctly */
+    animation: blink 1s infinite;
+    /* Match the font weight and color of the h1 if needed */
+    font-weight: 200; 
+    color: var(--text-primary);
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
 
 .logo {
     width: 70px;
@@ -80,13 +105,14 @@ body {
 }
 
 .hero-title {
-    font-size: 6.25rem;
+    font-size: 4rem; /* Reduced for better fit */
     font-weight: 200;
     margin-bottom: 0.6rem;
     font-family: 'The Nautigal', cursive;
-    line-height: 0.9;
+    line-height: 1.2; /* Increased for better spacing between lines */
     color: var(--text-primary);
 }
+
 
 .hero-subtitle {
     font-size: 1.2rem;
