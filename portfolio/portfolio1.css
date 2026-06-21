@@ -23,7 +23,7 @@ body {
 }
 
 .logo-img {
-    max-height: 45px; /* Ensures the logo sits perfectly inside your header */
+    max-height: 65px; /* Ensures the logo sits perfectly inside your header */
     width: auto;
     display: block;
     object-fit: contain;
@@ -36,7 +36,7 @@ body {
 }
 
 .footer-logo-img {
-    max-height: 75px; /* Slightly larger presence in the dark footer */
+    max-height: 85px; /* Slightly larger presence in the dark footer */
     width: auto;
     display: block;
     object-fit: contain;
