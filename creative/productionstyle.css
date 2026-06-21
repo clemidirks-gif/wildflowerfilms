@@ -81,38 +81,41 @@ body {
     width: 70px;
     height: 70px;
     cursor: pointer;
-    position: relative;
+    perspective: 1000px;
 }
 
 .logo img {
     width: 100%;
     height: auto;
     object-fit: contain;
-
     animation: logoFloat 3s ease-in-out infinite;
-
-    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
 }
 
 .logo img.spinning {
-    animation: logoSpinBurst 1.6s cubic-bezier(.17,.84,.44,1);
+    animation: logoFlipBurst 1.8s cubic-bezier(.17,.84,.44,1);
 }
 
-@keyframes logoSpinBurst {
+@keyframes logoFlipBurst {
+
     0% {
-        transform: translateY(0px) rotate(0deg);
+        transform: translateY(0px) rotateY(0deg);
     }
 
     20% {
-        transform: translateY(-5px) rotate(720deg);
+        transform: translateY(-5px) rotateY(540deg);
     }
 
     50% {
-        transform: translateY(-2px) rotate(1260deg);
+        transform: translateY(-3px) rotateY(1080deg);
+    }
+
+    75% {
+        transform: translateY(-5px) rotateY(1350deg);
     }
 
     100% {
-        transform: translateY(0px) rotate(1440deg);
+        transform: translateY(0px) rotateY(1440deg);
     }
 }
 
