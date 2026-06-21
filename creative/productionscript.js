@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     if (dynamicWordElement) {
         // Provide the list of words you want to cycle through
-        const words = ["Web Design", "Brand Design", "Creative Content"];
+        const words = ["Web Designs", "Brand Designs", "Creative Content"];
 
         // Variables to track the position and state
         let wordIndex = 0;
