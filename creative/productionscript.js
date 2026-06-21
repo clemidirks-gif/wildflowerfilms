@@ -372,3 +372,33 @@ document.addEventListener("DOMContentLoaded", function() {
         type();
     }
 });
+// ===============================
+// LOGO SPIN ON CLICK
+// ===============================
+
+const logo = document.querySelector('#logo img');
+
+if (logo) {
+
+    logo.addEventListener('click', () => {
+
+        logo.classList.remove('spinning');
+        logo.style.filter = "drop-shadow(0 0 20px rgba(255,255,255,.8))";
+
+setTimeout(() => {
+    logo.style.filter = "";
+}, 1200);
+
+        void logo.offsetWidth;
+
+        logo.classList.add('spinning');
+
+        logo.addEventListener('animationend', () => {
+
+            logo.classList.remove('spinning');
+
+        }, { once: true });
+
+    });
+
+}
