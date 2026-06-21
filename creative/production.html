@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <!-- NEW: Custom Cursor Element -->
     <div class="cursor">
         <div class="cursor-icon">&#x2197;</div> <!-- Unicode for North-East Arrow -->
@@ -24,9 +23,8 @@
                 <img src="images/wildflower-films-logo.png" alt="Wildflower Creative Logo">
             </div>
             <div class="hero-content">
-        <h1 class="hero-title">
-    We create<br><span id="dynamic-word"></span><br> for modern brands</h1>
-
+                <h1 class="hero-title">
+                    We create<br><span id="dynamic-word"></span><br> for modern brands</h1>
                 <button class="hero-cta">
                     Explore Services
                 </button>
@@ -36,7 +34,6 @@
                 <p>Scroll to explore</p>
             </div>
         </div>
-
         <!-- RIGHT COLUMN -->
         <div class="hero-right">
             <nav class="navbar">
@@ -70,39 +67,73 @@
 
     <!-- STACKING SECTIONS WRAPPER -->
     <div class="stack-wrapper">
-
         <!-- PORTFOLIO -->
         <section id="portfolio" class="creative-section alternate-bg stack-section">
             <h2 class="section-title">Web Design Portfolio</h2>
-
-<div class="card-stack-container">
-<a href="../portfolio/"
-   class="portfolio-card"
-   id="portfolio-card-1"
-   target="_blank"
-   rel="noopener noreferrer"></a>
-
-<a href="../portfolio2/"
-   class="portfolio-card"
-   id="portfolio-card-2"
-   target="_blank"
-   rel="noopener noreferrer"></a>
-
-    <a href="portfolio/portfolio_index.html" class="portfolio-card" id="portfolio-card-3">
-    </a>
-</div>
-        </section>
-
-        <!-- CONTENT DESIGN -->
-        <section id="content-design" class="creative-section stack-section">
-            <h2 class="section-title">Creative Content</h2>
-            <div class="section-content" data-scroll>
-                <p>
-                    From rebranding to visual storytelling,
-                    we shape how the world sees your brand.
-                </p>
+            <div class="card-stack-container">
+                <a href="../portfolio/" class="portfolio-card" id="portfolio-card-1" target="_blank" rel="noopener noreferrer"></a>
+                <a href="../portfolio2/" class="portfolio-card" id="portfolio-card-2" target="_blank" rel="noopener noreferrer"></a>
+                <a href="portfolio/portfolio_index.html" class="portfolio-card" id="portfolio-card-3"></a>
             </div>
         </section>
+
+        <!-- NEW PRICING SECTION -->
+        <section id="pricing" class="creative-section stack-section pricing-section">
+            <div class="pricing-container">
+                <div class="pricing-header">
+                    <span class="pricing-tag">Our Pricing</span>
+                    <h2>Affordable, powerful web design solutions.</h2>
+                    <p>Starting at just R5000, we make professional websites accessible for everyone.</p>
+                </div>
+                <div class="pricing-cards">
+                    <!-- Startup Plan -->
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3>Startup</h3>
+                        <p class="price">R5000</p>
+                        <ul class="features">
+                            <li>✓ Professional Website Build</li>
+                            <li>✓ Basic SEO Optimization</li>
+                            <li>✓ Mobile-Responsive Design</li>
+                            <li>✓ Contact Form Integration</li>
+                            <li>✓ Social Media Links</li>
+                        </ul>
+                        <button class="cta-button request-consultation">Request Consultation</button>
+                    </div>
+                    <!-- Add-ons Plan -->
+                    <div class="pricing-card">
+                        <h3>Add-ons</h3>
+                        <p class="price">Custom</p>
+                        <ul class="features">
+                            <li>✓ Product Photography Catalog</li>
+                            <li>✓ Promotional Website Video</li>
+                            <li>✓ Hero Background Video</li>
+                            <li>✓ Advanced SEO & Analytics</li>
+                            <li>✓ E-commerce Functionality</li>
+                        </ul>
+                        <button class="cta-button request-consultation">Request Consultation</button>
+                    </div>
+                </div>
+                 <div class="disclaimer">
+                    <span class="info-icon">i</span>
+                    <p>We'll handle the technical details. After a consultation to discuss your needs, we can deliver the website files for your existing hosting or set up new hosting for you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Consultation Form Modal -->
+        <div id="consultation-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h3>Request a Consultation</h3>
+                <form id="consultation-form">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                    <button type="submit" class="submit-button">Send Request</button>
+                </form>
+            </div>
+        </div>
 
         <!-- PHOTOGRAPHY -->
         <section id="photography" class="creative-section alternate-bg stack-section">
@@ -111,7 +142,6 @@
                 <p>\[Insert your photography showcases here\]</p>
             </div>
         </section>
-
         <!-- CONTENT CREATION -->
         <section id="content-creation" class="creative-section stack-section">
             <h2 class="section-title">Content Creation</h2>
@@ -119,7 +149,6 @@
                 <p>\[Insert your video ad and promotional content showcases here\]</p>
             </div>
         </section>
-
     </div>
 
     <!-- FOOTER -->
@@ -129,5 +158,12 @@
 
     <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
     <script src="productionscript.js?v=2"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("XHHbEPSh0jtgCofVr"); // <-- PASTE YOUR PUBLIC KEY (USER ID) HERE
+   })();
+</script>
+
 </body>
 </html>

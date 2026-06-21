@@ -402,3 +402,58 @@ setTimeout(() => {
     });
 
 }
+
+// ===============================
+// NEW PRICING MODAL & FORM
+// ===============================
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('consultation-modal');
+    const consultationButtons = document.querySelectorAll('.request-consultation');
+    const closeButton = document.querySelector('.close-button');
+
+    consultationButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // EmailJS Integration
+    const form = document.getElementById('consultation-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // NOTE: You need to have EmailJS initialized in your HTML
+        // <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        // <script type="text/javascript">
+        //   (function(){
+        //      emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS User ID
+        //   })();
+        // </script>
+
+        emailjs.send("service_tdoof9d", "template_7cv8xqr", {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value,
+        })
+        .then(function(response) {
+           console.log('SUCCESS!', response.status, response.text);
+           alert('Thank you for your request! We will be in touch shortly.');
+           modal.style.display = 'none';
+           form.reset();
+        }, function(error) {
+           console.log('FAILED...', error);
+           alert('Sorry, something went wrong. Please try again.');
+        });
+    });
+});
+
