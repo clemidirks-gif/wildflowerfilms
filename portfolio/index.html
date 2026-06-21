@@ -16,7 +16,16 @@
 
     <!-- Navigation -->
     <header class="navbar">
-        <div class="logo">Artistry</div>
+       <!-- Uploadable Header Logo -->
+<div class="logo-container top-logo">
+    <label for="nav-logo-input" class="logo-label">
+        <span id="nav-logo-text" class="logo-text logo">Artistry</span>
+        <img id="nav-logo-img" class="logo-img hidden" alt="Header Logo">
+        <span class="upload-overlay">Upload Logo</span>
+    </label>
+    <input type="file" id="nav-logo-input" accept="image/*" style="display: none;">
+</div>
+
         <nav>
             <a href="#home">Home</a>
             <a href="#services">Our Services</a>
@@ -115,7 +124,16 @@
         <!-- SECTION 5: Footer -->
         <footer class="footer stack-section">
             <div class="footer-container">
-                <h2 class="footer-logo">Artistry</h2>
+<!-- Uploadable Footer Logo -->
+<div class="logo-container footer-logo-container">
+    <label for="footer-logo-input" class="logo-label">
+        <span id="footer-logo-text" class="logo-text footer-logo">Artistry</span>
+        <img id="footer-logo-img" class="logo-img hidden" alt="Footer Logo">
+        <span class="upload-overlay">Upload Logo</span>
+    </label>
+    <input type="file" id="footer-logo-input" accept="image/*" style="display: none;">
+</div>
+
                 <nav class="footer-nav">
                     <a href="#home">Home</a>
                     <a href="#services">Our Services</a>

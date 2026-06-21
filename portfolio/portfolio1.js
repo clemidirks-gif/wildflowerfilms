@@ -1,5 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+     // --- Dynamic Logo Upload & Persistence ---
+    const setupUploadableLogo = (inputId, imgId, textId, storageKey) => {
+        const fileInput = document.getElementById(inputId);
+        const logoImg = document.getElementById(imgId);
+        const logoText = document.getElementById(textId);
+
+        if (!fileInput || !logoImg || !logoText) return;
+
+        // Check if there is an existing saved logo in localStorage
+        const savedLogo = localStorage.getItem(storageKey);
+        if (savedLogo) {
+            logoImg.src = savedLogo;
+            logoImg.classList.remove('hidden');
+            logoText.classList.add('hidden');
+        }
+
+        // Handle new image upload
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                // Ensure it's an image
+                if (!file.type.startsWith('image/')) {
+                    alert('Please upload an image file.');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const dataUrl = event.target.result;
+                    
+                    // Apply image to source and toggle visibility
+                    logoImg.src = dataUrl;
+                    logoImg.classList.remove('hidden');
+                    logoText.classList.add('hidden');
+                    
+                    // Save to local storage for persistence across page refreshes
+                    try {
+                        localStorage.setItem(storageKey, dataUrl);
+                    } catch (error) {
+                        console.warn("Logo size might exceed localStorage limits. It will display but won't persist.", error);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    };
+
+    // Initialize both header and footer logo uploads
+    setupUploadableLogo('nav-logo-input', 'nav-logo-img', 'nav-logo-text', 'artistry_nav_logo');
+    setupUploadableLogo('footer-logo-input', 'footer-logo-img', 'footer-logo-text', 'artistry_footer_logo');
+    
     // --- Custom Cursor ---
     const cursor = document.querySelector('.custom-cursor');
 
