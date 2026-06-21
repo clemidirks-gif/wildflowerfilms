@@ -112,7 +112,9 @@ body {
     line-height: 1.2; /* Increased for better spacing between lines */
     color: var(--text-primary);
 }
-
+#dynamic-word{
+        font-family: 'The Nautigal', cursive;
+}
 
 .hero-cta {
     padding: 0.9rem 1.9rem;
