@@ -343,8 +343,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         function type() {
             const currentWord = words[wordIndex];
-            const typeSpeed = 550;
-            const deleteSpeed = 450;
+            const typeSpeed = 150;
+            const deleteSpeed = 50;
             const pauseTime = 1000;
 
             // Typing or deleting logic
