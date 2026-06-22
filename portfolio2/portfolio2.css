@@ -353,7 +353,7 @@ header.scrolled {
   left: 50%;
   transform: translate(-50%, 0);
   height: 92%;
-  max-width: 70%;
+  max-width: 60%;
   object-fit: contain;
   z-index: 2;
   transform-origin: bottom center;
@@ -361,7 +361,7 @@ header.scrolled {
   pointer-events: none;
 }
 .product-card:hover .plant-image {
-  transform: translate(-50%, -10px) scale(1.05);
+  transform: translate(-50%, -10px) scale(1.02);
 }
 
 /* Standard Simple Info Base */
@@ -453,17 +453,17 @@ header.scrolled {
 
 /* Shrunk/repositioned plant image offset on expand - Pushed back to Top Right Corner */
 .product-card.expanded .plant-image {
-  height: 160px;
-  top: -40px;                 /* Placed image back in the top right */
+  height: 120px;
+  top: -40px;
   right: -25px;
-  bottom: auto;               /* Resets the default bottom layout */
+  bottom: auto; 
   left: auto;
   transform: none;
   transition: var(--transition-smooth);
-  z-index: 10;                /* Layered completely on top of expanded details */
+  z-index: 10;
 }
 .product-card.expanded:hover .plant-image {
-  transform: translateY(-5px);
+  transform: translateY(-1px);
 }
 
 /* Custom Top Left Close Button layout */
@@ -472,7 +472,6 @@ header.scrolled {
   top: 15px;                  /* Positioned perfectly at the top-left */
   left: 15px;
   z-index: 12;                /* Sits securely on top of the white background layer */
-  
   background: rgba(0, 0, 0, 0.05);
   border: none;
   border-radius: 50%;
