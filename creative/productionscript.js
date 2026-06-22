@@ -54,14 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log("Script loaded");
 console.log("THREE:", window.THREE);
 // ===============================
-// HERO CTA SCROLL
+// HERO CTA SCROLL (SCROLLS TO PRICING)
 // ===============================
-
-document.querySelector('.hero-cta')?.addEventListener('click', () => {
-    document.querySelector('#web-design')?.scrollIntoView({
+document.querySelector('.hero-cta')?.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevents instant jumping
+    document.querySelector('#pricing')?.scrollIntoView({
         behavior: 'smooth'
     });
 });
+
 
 // ===============================
 // NAVBAR SCROLL EFFECT
