@@ -140,14 +140,16 @@ body {
     font-size: 5.0rem;
 }
 
-.hero-cta{
+.hero-cta {
+    display: inline-block; /* Add this */
+    text-decoration: none; /* Add this */
     padding: 0.9rem 1.9rem;
     font-size: 0.9rem;
     font-weight: 200;
     margin-top: 2rem;
     font-family: 'Rethink Sans', serif;
-    border: 2px solid rgba(255,255,255,0.913);
-    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255, 255, 255, 0.913);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
     color: var(--accent);
     cursor: pointer;
@@ -155,6 +157,7 @@ body {
     border-radius: 50px;
     letter-spacing: 1px;
 }
+
 
 .hero-cta:hover {
     background: rgba(255,255,255,1);
