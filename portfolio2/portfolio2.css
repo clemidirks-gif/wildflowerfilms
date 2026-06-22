@@ -453,7 +453,7 @@ header.scrolled {
 
 /* Shrunk/repositioned plant image offset on expand - Pushed back to Top Right Corner */
 .product-card.expanded .plant-image {
-  height: 120px;
+  height: 100px;
   top: -40px;
   right: -25px;
   bottom: auto; 
@@ -583,7 +583,7 @@ header.scrolled {
 }
 #banner-bg {
   background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
-  url('https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&q=80&w=1920');
+  url('images/lowerbg.webp');
 }
 .banner-text {
   z-index: 2;
