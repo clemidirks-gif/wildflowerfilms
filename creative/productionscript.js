@@ -457,3 +457,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// ====================================
+// NEW: MOBILE HAMBURGER MENU
+// ====================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Only run this on mobile-sized devices
+    if (window.innerWidth <= 768) {
+        const body = document.body;
+
+        // 1. Create the hamburger button
+        const hamburger = document.createElement('div');
+        hamburger.className = 'hamburger-menu';
+        hamburger.innerHTML = '<span></span><span></span><span></span>';
+        body.appendChild(hamburger);
+
+        // 2. Create the mobile navigation panel
+        const mobileNav = document.createElement('div');
+        mobileNav.className = 'mobile-nav-panel';
+
+        // 3. Find the original nav and copy its links into the new mobile panel
+        const desktopNavMenu = document.querySelector('.nav-menu');
+        if (desktopNavMenu) {
+            mobileNav.innerHTML = desktopNavMenu.innerHTML;
+        }
+        body.appendChild(mobileNav);
+
+        // 4. Add click functionality to open/close the menu
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            body.classList.toggle('no-scroll'); // Optional: prevents scrolling when menu is open
+        });
+
+        // 5. Close menu when a link is clicked
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                body.classList.remove('no-scroll');
+            });
+        });
+    }
+});
