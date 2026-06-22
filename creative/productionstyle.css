@@ -63,7 +63,7 @@ body {
     right: -1.5rem; /* Adjust this value to position the cursor correctly */
     animation: blink 1s infinite;
     /* Match the font weight and color of the h1 if needed */
-    font-weight: 200; 
+    font-weight: 200;
     color: var(--text-primary);
 }
 
@@ -365,7 +365,6 @@ body {
     position: relative;
 }
 
-/* CHANGE 1: Remove the 'sticky' property from all sections initially */
 .stack-section {
     top: 0;
     min-height: 100vh;
@@ -509,7 +508,7 @@ body {
 }
 
 /* ===============================
-   CUSTOM CURSOR STYLES 
+   CUSTOM CURSOR STYLES
 =============================== */
 body.portfolio-cursor-active,
 body.portfolio-cursor-active a {
@@ -628,7 +627,7 @@ body.portfolio-cursor-active .cursor {
 }
 
 .pricing-card.popular {
-    border-color:rgba(53, 106, 15, 0.8);
+    border-color:rgba(53, 106, 15, 0.8);;
     border-width: 2px;
 }
 
@@ -637,7 +636,7 @@ body.portfolio-cursor-active .cursor {
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(53, 106, 15, 1);
+    background-color: rgba(53, 106, 15, 100);;
     color: #fff;
     padding: 0.5rem 1.2rem;
     border-radius: 20px;
@@ -797,107 +796,122 @@ body.portfolio-cursor-active .cursor {
     background-color: #333;
 }
 
+
 /* ===============================
-   MOBILE ADJUSTMENTS (UPDATED)
+   MOBILE ADJUSTMENTS (REVISED)
 =============================== */
 @media (max-width: 768px) {
+    /* Base structure for fullscreen hero */
     .hero-grid {
         grid-template-columns: 1fr;
         height: 100vh;
-        position: relative; /* Base for absolute layers */
+        position: relative;
     }
 
-    .hero-left {
-        min-height: 100vh;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 1.5rem;
-        background: transparent; /* Remove background so image shows through */
+    /* Right column becomes the background */
+    .hero-right {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 10;
-        pointer-events: none; /* Crucial: Allows clicks to pass through to the navbar beneath */
+        height: 100%;
+        margin: 0;
+        border-radius: 0;
+        z-index: 1; /* Layer behind everything else */
+        background-image: url('images/bgCovers.webp'); /* Static background */
+        background-size: cover;
+        background-position: center;
     }
 
-    /* Re-enable clicks for the actual content */
-    .logo, .hero-content, .scroll-indicator {
-        pointer-events: auto; 
+    /* Hide the JS canvas on mobile */
+    #fluid-canvas {
+        display: none;
     }
 
-    .logo {
-        align-self: flex-start;
+    /* Darken overlay for better text readability */
+    .hero-overlay {
+        background: rgba(0, 16, 7, 0.5);
     }
 
-    .hero-content {
-        margin-top: 0;
+    /* Left column becomes the content layer */
+    .hero-left {
+        min-height: 100vh;
+        width: 100%;
+        background: transparent;
+        padding: 1.5rem;
         display: flex;
         flex-direction: column;
+        justify-content: space-between; /* Pushes logo/nav to top, indicator to bottom */
         align-items: center;
-        justify-content: center;
+        text-align: center;
+        z-index: 5; /* On top of the background */
+        position: relative;
+        pointer-events: none; /* Allow clicks to go through to elements below */
+    }
+    
+    /* Re-enable clicks for interactive elements */
+    .logo, .hero-content, .scroll-indicator, .navbar, .hero-cta {
+        pointer-events: auto;
+    }
+
+    /* Position the logo at the top left */
+    .logo {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Center the main text content vertically and horizontally */
+    .hero-content {
+        margin-top: 0;
+        width: 100%;
     }
 
     .hero-title {
-        font-size: 2.6rem;
-        text-align: center;
-        margin-bottom: 1rem;
+        font-size: 2.8rem;
     }
 
     #dynamic-word {
-        font-size: 3.2rem;
+        font-size: 3.5rem;
     }
 
-    /* Center align the blinking cursor slightly for mobile */
     #dynamic-word::after {
-        right: -0.8rem; 
+        right: -1rem; /* Adjust blinking cursor */
     }
 
+    .hero-cta {
+        margin-top: 2rem;
+    }
+
+    /* Position scroll indicator at bottom center */
     .scroll-indicator {
-        margin-left: 0; /* Override the desktop 46rem margin */
+        margin-left: 0;
+        width: auto;
         position: absolute;
         bottom: 2rem;
         left: 50%;
         transform: translateX(-50%);
     }
 
-    .hero-right {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        margin: 0;
-        border-radius: 0;
-        z-index: 1; /* Sits behind the hero-left content */
-        
-        /* Render static background image, bypassing JS shader requirements */
-        background-image: url('images/bgCovers.webp');
-        background-size: cover;
-        background-position: center;
-    }
-
-    #fluid-canvas {
-        display: none !important; /* Hide hover effect shader canvas completely on mobile */
-    }
-    
-    .hero-overlay {
-        background: rgba(0,16,7,0.5); /* Slightly darken the overlay to ensure white text pops */
-    }
-
+    /* Navigation Bar styles */
     .navbar {
         padding: 1.5rem;
-        z-index: 20; /* Ensures navbar is clickable and sits on top */
+        z-index: 20; /* Highest z-index to be on top and clickable */
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: auto; /* Only take space it needs */
     }
 
     .nav-container {
-        justify-content: center;
+        justify-content: flex-end;
     }
 
     .nav-menu {
         flex-direction: column;
-        gap: 0.8rem;
+        gap: 0.5rem;
         align-items: flex-end;
         background: rgba(0,0,0,0.4);
         padding: 1rem 1.5rem;
@@ -905,56 +919,78 @@ body.portfolio-cursor-active .cursor {
         backdrop-filter: blur(8px);
     }
     
-    /* Safely align dropdown items for touch displays */
+    .nav-menu > li > a {
+        font-size: 1rem;
+    }
+
+    .dropdown {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
     .dropdown-content {
+        visibility: visible;
+        opacity: 1;
         position: relative;
-        left: auto;
-        right: 0;
-        transform: translateY(5px);
+        transform: none;
         background: transparent;
         box-shadow: none;
         border: none;
-        padding-top: 0.5rem;
+        padding: 0.5rem 0 0 0;
+        display: flex;
+        align-items: flex-end;
+        min-width: unset;
     }
 
-    .dropdown:hover .dropdown-content {
-        transform: translateY(0);
+    .dropdown-content a {
+        padding: 0.4rem 0;
+        font-size: 0.9rem;
     }
 
-    /* Disable all sticky stacking on mobile */
+    /* Disable all sticky stacking on mobile for a simpler scroll */
     .stack-section,
     #content-design,
     #photography,
     #content-creation {
         position: relative;
         min-height: auto;
-        margin-bottom: 0 !important; 
+        margin-bottom: 0 !important;
         border-radius: 0;
         padding: 4rem 1.5rem;
     }
 
     /* Fix Portfolio section for mobile views */
-    .card-stack-container { 
-        display: flex; 
+    .card-stack-container {
+        display: flex;
         flex-direction: column;
         gap: 1.5rem;
         height: auto;
         margin-top: 2rem;
-    } 
+        width: 100%;
+    }
     
     .portfolio-card {
-        position: relative;
-        top: 0 !important;
+        position: relative !important; /* Override sticky */
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
         height: 320px;
         width: 100%;
         margin: 0;
     }
 
-    /* Make sure default cursor is always used on mobile (disable JS custom cursor) */
+    /* Make sure default cursor is always used on mobile */
     body, a { cursor: auto !important; }
     .cursor { display: none !important; }
     
-    /* Ensure pricing cards stack nicely and don't overflow */
+    /* Adjust pricing section for mobile */
+    .pricing-container {
+        padding: 4rem 1.5rem;
+    }
+    
     .pricing-cards {
         flex-direction: column;
         align-items: center;
