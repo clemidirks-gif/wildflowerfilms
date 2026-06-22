@@ -6,12 +6,17 @@
     cursor: none; /* Hide default cursor for custom cursor */
 }
 
+html {
+    background-color: #fcfcfc;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     color: #111;
     background-color: #fcfcfc;
     overflow-x: hidden;
 }
+
 /* --- Static Logo Styles --- */
 .logo-link {
     display: inline-block;
@@ -99,6 +104,7 @@ body {
     width: 40px;
     height: 40px;
     margin-left: 10px;
+    transition: background-color 0.2s;
 }
 
 .nav-actions .profile {
@@ -202,46 +208,32 @@ body {
     gap: 15px;
 }
 
+/* --- Hero SVGs Container --- */
 .hero-visuals {
     position: absolute;
     right: 5%;
     top: 10%;
-    width: 50%;
-    height: 80%;
+    width: 45%;
+    height: auto;
     z-index: 0;
 }
 
-/* Placeholder styles for hero visual elements to demonstrate parallax */
-.graphic-element {
+.svg-layer {
     position: absolute;
-    border-radius: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.1s ease-out;
 }
 
-.lamp {
-    width: 300px;
-    height: 400px;
-    background: #2b5b84;
-    right: 10%;
-    top: 10%;
-    border-radius: 200px 200px 0 0;
+.day-svg {
+    z-index: 1;
 }
 
-.chair {
-    width: 200px;
-    height: 180px;
-    background: #facc15;
-    right: 20%;
-    bottom: 10%;
-    border-radius: 20px;
-}
-
-.frame {
-    width: 120px;
-    height: 150px;
-    background: #e04a3a;
-    left: 10%;
-    bottom: 20%;
-    border: 5px solid #111;
+.night-svg {
+    opacity: 0;
+    z-index: 2;
 }
 
 /* --- Section 2: Services --- */
@@ -444,6 +436,19 @@ body {
 .copyright {
     color: #aaa;
     font-size: 0.9rem;
+}
+
+/* --- Dark Mode Inversion --- */
+body.invert-theme {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+body.invert-theme img,
+body.invert-theme .hero-visuals,
+body.invert-theme .day-night-overlay,
+body.invert-theme .visual-box,
+body.invert-theme .custom-cursor {
+    filter: invert(1) hue-rotate(180deg);
 }
 
 /* Mobile Responsiveness */

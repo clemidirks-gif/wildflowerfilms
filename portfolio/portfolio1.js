@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- Custom Cursor ---
     const cursor = document.querySelector('.custom-cursor');
-
     document.addEventListener('mousemove', (e) => {
         // Move the custom cursor to follow the mouse
         cursor.style.left = e.clientX + 'px';
@@ -22,6 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // --- Dark Mode Theme Toggle ---
+    const themeToggleBtn = document.getElementById('themeToggle');
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('invert-theme');
+        if (document.body.classList.contains('invert-theme')) {
+            themeToggleBtn.innerText = '☀️';
+        } else {
+            themeToggleBtn.innerText = '🌙';
+        }
+    });
 
     // --- Scroll Effects: Day to Night Transition & Parallax ---
     const nightOverlay = document.querySelector('.day-night-overlay');
@@ -35,9 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
         // 1. Day to Night Transition
         // Calculate opacity based on scroll depth relative to the hero section's height
         const heroHeight = heroSection.offsetHeight;
+        
         // The opacity goes from 0 to 0.9 (we cap it so it's a deep blue, not totally pitch black)
         let fadeProgress = Math.min(scrollY / (heroHeight * 0.8), 0.9);
         nightOverlay.style.opacity = fadeProgress;
+
+        // --- Crossfade the Night SVG (Turn room light on) ---
+        const nightSvg = document.querySelector('.night-svg');
+        if (nightSvg) {
+            // Allows the SVG opacity to safely reach 1.0
+            nightSvg.style.opacity = Math.min(fadeProgress / 0.9, 1);
+        }
 
         // Optional: Change text color in the hero dynamically based on darkness
         const heroText = document.querySelectorAll('.hero-content h1, .hero-content p');

@@ -11,15 +11,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <!-- Custom Cursor -->
     <div class="custom-cursor"></div>
 
     <!-- Navigation -->
     <header class="navbar">
-<!-- Static Header Logo -->
-<a href="#" class="logo-link">
-    <img src="images/logo.png" alt="Artistry Logo" class="logo-img">
-</a>
+        <!-- Static Header Logo -->
+        <a href="#" class="logo-link">
+            <img src="images/logo.png" alt="Artistry Logo" class="logo-img">
+        </a>
         <nav>
             <a href="#home">Home</a>
             <a href="#services">Our Services</a>
@@ -27,7 +28,8 @@
             <a href="#about">About Us</a>
         </nav>
         <div class="nav-actions">
-            <button class="icon-btn">🔍</button>
+            <!-- Dark Mode Toggle Button (Replaced Search) -->
+            <button class="icon-btn dark-mode-toggle" id="themeToggle">🌙</button>
             <button class="icon-btn profile">👤</button>
         </div>
     </header>
@@ -38,7 +40,6 @@
         <!-- SECTION 1: Hero (Full Screen, Parallax, Day-to-Night) -->
         <section id="home" class="hero stack-section">
             <div class="day-night-overlay"></div>
-
             <div class="hero-content parallax" data-speed="0.2">
                 <h1>Your <span class="highlight">Creative</span><br>Marketing Partner</h1>
                 <p>Artistry provides customized digital marketing, transforming your vision into engaging online experiences that drive results. Let's elevate your brand!</p>
@@ -48,11 +49,12 @@
                 </div>
             </div>
 
-            <!-- Parallax Decorative Elements -->
-            <div class="hero-visuals">
-                <div class="graphic-element lamp parallax" data-speed="0.05"></div>
-                <div class="graphic-element frame parallax" data-speed="0.4"></div>
-                <div class="graphic-element chair parallax" data-speed="0.15"></div>
+            <!-- Parallax SVG Hero Container -->
+            <div class="hero-visuals parallax" data-speed="0.15">
+                <!-- Day SVG (Base Layer) -->
+                <img src="images/hero-day.svg" alt="Room Day" class="svg-layer day-svg">
+                <!-- Night SVG (Glows/Lights Layer) -->
+                <img src="images/hero-night.svg" alt="Room Night" class="svg-layer night-svg">
             </div>
         </section>
 
@@ -118,11 +120,10 @@
         <!-- SECTION 5: Footer -->
         <footer class="footer stack-section">
             <div class="footer-container">
-<!-- Static Footer Logo -->
-<div class="footer-logo-container">
-    <img src="images/logo.png" alt="Artistry Logo" class="footer-logo-img">
-</div>
-
+                <!-- Static Footer Logo -->
+                <div class="footer-logo-container">
+                    <img src="images/logo.png" alt="Artistry Logo" class="footer-logo-img">
+                </div>
                 <nav class="footer-nav">
                     <a href="#home">Home</a>
                     <a href="#services">Our Services</a>
