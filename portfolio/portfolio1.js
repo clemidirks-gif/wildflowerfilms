@@ -1,12 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     // --- Custom Cursor ---
     const cursor = document.querySelector('.custom-cursor');
+    
     document.addEventListener('mousemove', (e) => {
         // Move the custom cursor to follow the mouse
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     });
+
+    // Add a hover effect to buttons and links using a CSS class toggle
+    const hoverElements = document.querySelectorAll('a, button, .card');
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hovering');
+        });
+    });
+
 
     // Add a hover effect to buttons and links
     const hoverElements = document.querySelectorAll('a, button, .card');
