@@ -617,7 +617,8 @@ body.portfolio-cursor-active .cursor {
     padding-top: 2rem;
     padding-bottom: 2ch;
     background-color: #ffffff;
-    color: #000000;
+    color: #0a120a;
+    font-family: 'Rethink Sans', serif;
 }
 
 .pricing-container {
@@ -680,7 +681,7 @@ body.portfolio-cursor-active .cursor {
 }
 
 .pricing-card.popular {
-    border-color: #4A90E2;
+    border-color:rgba(53, 106, 15, 0.8);;
     border-width: 2px;
 }
 
@@ -689,7 +690,7 @@ body.portfolio-cursor-active .cursor {
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #4A90E2;
+    background-color: rgba(53, 106, 15, 0.8);;
     color: #fff;
     padding: 0.5rem 1.2rem;
     border-radius: 20px;
