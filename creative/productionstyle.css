@@ -826,7 +826,7 @@ body.portfolio-cursor-active .cursor {
     #dynamic-word::after { right: -1rem; }
     .hero-cta { margin-top: 2rem; }
     
-    .scroll-indicator { margin-left: 0; width: auto; position: absolute; bottom: 2rem; left: 20%; transform: translateX(-20%); }
+    .scroll-indicator { margin-left: 0; width: auto; position: absolute; bottom: 2rem; left: 30%; transform: translateX(-30%); }
 
     /* STYLING FOR THE HAMBURGER BUTTON */
     .hamburger-menu {
