@@ -140,7 +140,7 @@ body {
     font-size: 5.0rem;
 }
 
-#hero-cta{
+.hero-cta{
     padding: 0.9rem 1.9rem;
     font-size: 0.9rem;
     font-weight: 200;
@@ -156,7 +156,7 @@ body {
     letter-spacing: 1px;
 }
 
-#hero-cta:hover {
+.hero-cta:hover {
     background: rgba(255,255,255,1);
     color: var(--primary-dark);
     transform: translateY(-3px);
