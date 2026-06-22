@@ -144,7 +144,7 @@ body {
     padding: 0.9rem 1.9rem;
     font-size: 0.9rem;
     font-weight: 200;
-    margin-top: 1.5rem;
+    margin-top: 3rem;
     font-family: 'Rethink Sans', serif;
     border: 2px solid rgba(255,255,255,0.913);
     background: rgba(255,255,255,0.15);
@@ -824,9 +824,9 @@ body.portfolio-cursor-active .cursor {
     .hero-title { font-size: 2.6rem; }
     #dynamic-word { font-size: 3.3rem; }
     #dynamic-word::after { right: -1rem; }
-    .hero-cta { margin-top: 2rem; }
+    .hero-cta { margin-top: 4rem; }
     
-    .scroll-indicator { margin-left: 0; width: auto; position: absolute; bottom: 2rem; left: 0%; transform: translateX(-40%); }
+    .scroll-indicator { margin-left: 0; width: auto; position: absolute; bottom: 2rem; left: 0%; transform: translateX(-35%); }
 
     /* STYLING FOR THE HAMBURGER BUTTON */
     .hamburger-menu {
