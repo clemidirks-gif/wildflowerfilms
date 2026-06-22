@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; /* Hide default cursor for custom cursor */
+    cursor: none; /* Hide default cursor */
 }
 
 html {
@@ -17,61 +17,67 @@ body {
     overflow-x: hidden;
 }
 
-/* --- Static Logo Styles --- */
-.logo-link {
-    display: inline-block;
-    transition: transform 0.2s ease;
-}
-
-.logo-link:hover {
-    transform: scale(1.05); /* Soft, professional pop on hover */
-}
-
-.logo-img {
-    max-height: 65px; /* Ensures the logo sits perfectly inside your header */
-    width: auto;
-    display: block;
-    object-fit: contain;
-}
-
-.footer-logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.footer-logo-img {
-    max-height: 85px; /* Slightly larger presence in the dark footer */
-    width: auto;
-    display: block;
-    object-fit: contain;
-}
-
-/* Custom Cursor with dynamic color inversion */
-/* Custom Cursor with dynamic color inversion */
+/* Custom Cursor */
 .custom-cursor {
     width: 20px;
     height: 20px;
-    border: 2px solid #fff; /* Changed from #111 to #fff */
-    background-color: transparent;
+    border: 2px solid #111; /* Default is black */
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out, background-color 0.2s ease;
-    
-    /* This makes it black on light backgrounds, and white on dark backgrounds */
-    mix-blend-mode: difference; 
+    transition: transform 0.1s ease-out, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-/* When hovering over buttons/links */
 .custom-cursor.hovering {
     transform: translate(-50%, -50%) scale(1.5);
-    background-color: #fff; /* Fills in the circle */
+    background-color: rgba(17, 17, 17, 0.1);
+}
+
+/* --- Dark Mode Inversion --- */
+body.invert-theme {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* "Double-invert" images and other elements to prevent them from looking like photo negatives. */
+/* The cursor is NOT in this list. */
+body.invert-theme img,
+body.invert-theme .hero-visuals,
+body.invert-theme .day-night-overlay,
+body.invert-theme .visual-box {
+    filter: invert(1) hue-rotate(180deg);
 }
 
 
+/* --- ALL OTHER CSS REMAINS THE SAME... --- */
+/* (The rest of your file from .logo-link onwards is correct) */
+
+/* --- Static Logo Styles --- */
+.logo-link {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+.logo-link:hover {
+    transform: scale(1.05);
+}
+.logo-img {
+    max-height: 65px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+.footer-logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.footer-logo-img {
+    max-height: 85px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
 /* --- Navigation --- */
 .navbar {
     position: fixed;
@@ -85,30 +91,25 @@ body {
     background: transparent;
     transition: background 0.3s ease;
 }
-
 .logo {
     font-size: 2rem;
     font-weight: 700;
     color: #facc15;
     text-shadow: 2px 2px 0px #e04a3a, 4px 4px 0px #2b5b84;
 }
-
 .navbar nav {
     display: flex;
     gap: 30px;
 }
-
 .navbar nav a {
     text-decoration: none;
     color: #111;
     font-weight: 500;
     transition: color 0.3s;
 }
-
 .navbar nav a:hover {
     color: #e04a3a;
 }
-
 .nav-actions .icon-btn {
     background: none;
     border: 1px solid #111;
@@ -118,30 +119,26 @@ body {
     margin-left: 10px;
     transition: background-color 0.2s;
 }
-
 .nav-actions .profile {
     background: #111;
     color: #fff;
 }
-
 /* --- Stacking Container Logic --- */
 .stacking-container {
     position: relative;
 }
-
 .stack-section {
     position: sticky;
     top: 0;
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
-    background-color: #fcfcfc; /* Default background masks the previous section */
-    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.05); /* Shadow for depth when stacking */
+    background-color: #fcfcfc;
+    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 /* --- Buttons --- */
 .btn {
     padding: 12px 30px;
@@ -151,32 +148,26 @@ body {
     display: inline-block;
     transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-
 .btn-primary {
     background: #111;
     color: #fff;
 }
-
 .btn-secondary {
     background: transparent;
     color: #111;
     border: 1px solid #111;
 }
-
 /* --- Section 1: Hero --- */
 .hero {
-    background-color: #fcfcfc; /* Day background */
+    background-color: #fcfcfc;
     justify-content: flex-start;
     padding: 0 5%;
-    z-index: 1; /* Bottom of the stack */
+    z-index: 1;
 }
-
-/* The Blue Hue Nighttime Overlay */
 .day-night-overlay {
     position: absolute;
     top: 0;
@@ -184,42 +175,36 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-    opacity: 0; /* Starts hidden, JS handles scroll fade */
+    opacity: 0;
     z-index: 1;
     pointer-events: none;
-    mix-blend-mode: multiply; /* Blends nicely with background elements */
+    mix-blend-mode: multiply;
     transition: opacity 0.1s ease-out;
 }
-
 .hero-content {
     max-width: 500px;
     z-index: 2;
     position: relative;
     margin-top: 15vh;
 }
-
 .hero h1 {
     font-size: 3.5rem;
     line-height: 1.1;
     margin-bottom: 20px;
 }
-
 .hero .highlight {
     color: #facc15;
     text-shadow: 2px 2px 0px #e04a3a;
 }
-
 .hero p {
     font-size: 1.1rem;
     color: #555;
     margin-bottom: 30px;
 }
-
 .hero-buttons {
     display: flex;
     gap: 15px;
 }
-
 /* --- Hero SVGs Container --- */
 .hero-visuals {
     position: absolute;
@@ -229,7 +214,6 @@ body {
     height: auto;
     z-index: 0;
 }
-
 .svg-layer {
     position: absolute;
     top: 0;
@@ -238,21 +222,17 @@ body {
     height: auto;
     transition: opacity 0.1s ease-out;
 }
-
 .day-svg {
     z-index: 1;
 }
-
 .night-svg {
     opacity: 0;
     z-index: 2;
 }
-
 /* --- Section 2: Services --- */
 .services {
     z-index: 2;
 }
-
 .services-grid {
     display: flex;
     max-width: 1200px;
@@ -261,7 +241,6 @@ body {
     width: 100%;
     padding: 0 5%;
 }
-
 .service-cards {
     flex: 1;
     display: grid;
@@ -269,7 +248,6 @@ body {
     gap: 20px;
     position: relative;
 }
-
 .card {
     height: 200px;
     border-radius: 10px;
@@ -280,33 +258,27 @@ body {
     font-weight: 600;
     color: #fff;
 }
-
 .card-yellow { background: #facc15; color: #111; }
 .card-orange { background: #f97316; }
 .card-red { background: #e04a3a; }
 .card-dark { background: #3a2a2a; }
-
 .services-text {
     flex: 1;
 }
-
 .services-text h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
-
 .services-text p {
     color: #555;
     margin-bottom: 30px;
     line-height: 1.6;
 }
-
 /* --- Section 3: Success Stories --- */
 .success-stories {
     z-index: 3;
     background-color: #fcfcfc;
 }
-
 .stories-container {
     display: flex;
     max-width: 1200px;
@@ -315,37 +287,31 @@ body {
     width: 100%;
     padding: 0 5%;
 }
-
 .section-line {
     width: 50px;
     height: 3px;
     background-color: #2b5b84;
     margin-bottom: 15px;
 }
-
 .stories-text { flex: 1; }
 .stories-text h2 { font-size: 2.5rem; margin-bottom: 15px; }
 .stories-text h3 { font-size: 1.2rem; margin-bottom: 15px; }
 .stories-text p { color: #555; margin-bottom: 30px; line-height: 1.6; }
-
 .stories-visual {
     flex: 1;
 }
-
 .visual-box {
     width: 100%;
     height: 400px;
-    background: #649673; /* Green background from image */
+    background: #649673;
     border-radius: 10px;
     border: 2px solid #111;
     box-shadow: -15px 15px 0px #2b5b84;
 }
-
 /* --- Section 4: About Us --- */
 .about-us {
     z-index: 4;
 }
-
 .about-container {
     display: flex;
     max-width: 1200px;
@@ -354,29 +320,24 @@ body {
     width: 100%;
     padding: 0 5%;
 }
-
 .about-text { flex: 1; }
 .about-text h2 { font-size: 2.5rem; margin-bottom: 15px; }
 .about-text h3 { font-size: 1.2rem; margin-bottom: 15px; }
 .about-text p { color: #555; margin-bottom: 30px; line-height: 1.6; }
-
 .stats {
     display: flex;
     gap: 40px;
 }
-
 .stat-number {
     font-size: 3.5rem;
     font-weight: 700;
     color: #facc15;
     line-height: 1;
 }
-
 .stat-label {
     display: block;
     color: #555;
 }
-
 .about-image { flex: 1; }
 .image-placeholder {
     width: 100%;
@@ -384,49 +345,41 @@ body {
     background: #e2e2e2;
     border-radius: 10px;
 }
-
 /* --- Section 5: Footer --- */
 .footer {
     z-index: 5;
     background-color: #4a3434;
     color: #fff;
-    min-height: 60vh; /* Footer doesn't need to be full screen */
+    min-height: 60vh;
 }
-
 .footer-container {
     text-align: center;
     width: 100%;
 }
-
 .footer-logo {
     font-size: 3rem;
     color: #facc15;
     text-shadow: 2px 2px 0px #e04a3a, 4px 4px 0px #2b5b84;
     margin-bottom: 30px;
 }
-
 .footer-nav {
     display: flex;
     justify-content: center;
     gap: 30px;
     margin-bottom: 30px;
 }
-
 .footer-nav a {
     color: #fff;
     text-decoration: none;
     transition: color 0.3s;
 }
-
 .footer-nav a:hover { color: #facc15; }
-
 .social-icons {
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-bottom: 30px;
 }
-
 .social-icon {
     width: 40px;
     height: 40px;
@@ -439,29 +392,14 @@ body {
     text-decoration: none;
     transition: background 0.3s, color 0.3s;
 }
-
 .social-icon:hover {
     background: #fff;
     color: #4a3434;
 }
-
 .copyright {
     color: #aaa;
     font-size: 0.9rem;
 }
-
-/* --- Dark Mode Inversion --- */
-body.invert-theme {
-    filter: invert(1) hue-rotate(180deg);
-}
-
-body.invert-theme img,
-body.invert-theme .hero-visuals,
-body.invert-theme .day-night-overlay,
-body.invert-theme .visual-box {
-    filter: invert(1) hue-rotate(180deg);
-}
-
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .services-grid, .stories-container, .about-container {
