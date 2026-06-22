@@ -833,7 +833,7 @@ body.portfolio-cursor-active .cursor {
 }
 
     
-    .scroll-indicator { margin-left: 0; width: auto; position: absolute; bottom: 2rem; left: 0%; transform: translateX(-35%); }
+    .scroll-indicator { margin-left: 0; width: auto; position: absolute; bottom: 2rem; left: 35%; transform: translateX(-35%); }
 
     /* STYLING FOR THE HAMBURGER BUTTON */
     .hamburger-menu {
