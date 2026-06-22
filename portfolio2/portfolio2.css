@@ -349,11 +349,11 @@ header.scrolled {
 /* Center transparent plant image in default state - Adjusted size & placement */
 .plant-image {
   position: absolute;
-  bottom: 10px;                  /* Positions closer to the bottom boundary */
+  bottom: 10px;
   left: 50%;
   transform: translate(-50%, 0);
-  height: 92%;                   /* Made images larger */
-  max-width: 90%;
+  height: 92%;
+  max-width: 70%;
   object-fit: contain;
   z-index: 2;
   transform-origin: bottom center;
