@@ -502,12 +502,12 @@ body {
 }
 
 #portfolio-card-1 {
-    background-image: url('images/portfolio-image-1.png');
+    background-image: url('images/artistry.webp');
     z-index: 11;
 }
 
 #portfolio-card-2 {
-    background-image: url('images/portfolio-image-2png.png');
+    background-image: url('images/plant_patch.webp');
     z-index: 12;
 }
 
@@ -730,11 +730,10 @@ body.portfolio-cursor-active .cursor {
 .cta-button {
     width: 100%;
     padding: 1rem;
-    border-radius: 100px;
+    border-radius:50rem;
     border: 1px solid #000;
     background-color: #fff;
     color: #000;
-    border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
