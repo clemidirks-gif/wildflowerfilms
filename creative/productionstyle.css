@@ -798,7 +798,7 @@ body.portfolio-cursor-active .cursor {
 
 
 /* ===============================
-   MOBILE ADJUSTMENTS (FINAL REVISION)
+   MOBILE ADJUSTMENTS (FINAL CLEAN VERSION)
 =============================== */
 @media (max-width: 768px) {
     /* Base structure for fullscreen hero */
@@ -808,7 +808,7 @@ body.portfolio-cursor-active .cursor {
         position: relative;
     }
 
-    /* Right column becomes the background */
+    /* Right column becomes the static background */
     .hero-right {
         position: absolute;
         top: 0;
@@ -817,15 +817,15 @@ body.portfolio-cursor-active .cursor {
         height: 100%;
         margin: 0;
         border-radius: 0;
-        z-index: 1; /* Layer behind everything else */
-        background-image: url('images/bgCovers.webp'); /* Static background */
+        z-index: 1; 
+        background-image: url('images/bgCovers.webp');
         background-size: cover;
         background-position: center;
     }
 
     /* Hide the JS canvas on mobile */
     #fluid-canvas {
-        display: none;
+        display: none !important;
     }
 
     /* Darken overlay for better text readability */
@@ -838,15 +838,15 @@ body.portfolio-cursor-active .cursor {
         min-height: 100vh;
         width: 100%;
         background: transparent;
-        padding: 1.5rem;
+        padding: 0;
         display: flex;
         flex-direction: column;
-        justify-content: space-between; /* Pushes logo/nav to top, indicator to bottom */
+        justify-content: center;
         align-items: center;
         text-align: center;
-        z-index: 5; /* On top of the background */
+        z-index: 5;
         position: relative;
-        pointer-events: none; /* Allow clicks to go through to elements below */
+        pointer-events: none; /* Allow clicks to go through to navbar */
     }
     
     /* Re-enable clicks for interactive elements */
@@ -854,41 +854,107 @@ body.portfolio-cursor-active .cursor {
         pointer-events: auto;
     }
 
-    /* Position the logo at the top left */
+    /* Center logo at the very top */
     .logo {
         position: absolute;
         top: 1.5rem;
-        left: 1.5rem;
-        width: 50px;
-        height: 50px;
-        z-index: 110; /* Ensure logo is above nav container */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 45px;
+        height: 45px;
+        z-index: 110; 
     }
 
-    /* Center the main text content vertically and horizontally */
+    /* Navigation Bar: Simple text below the logo */
+    .navbar {
+        padding: 0;
+        z-index: 100;
+        position: absolute;
+        top: 5rem; /* Placed cleanly beneath the logo */
+        left: 0;
+        width: 100%;
+        background: transparent !important;
+        backdrop-filter: none !important;
+    }
+
+    .nav-container {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Clean, horizontal text navigation without boxes */
+    .nav-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        background: transparent;
+        padding: 0 1rem;
+        border-radius: 0;
+        backdrop-filter: none;
+    }
+    
+    .nav-menu > li > a {
+        font-size: 0.9rem;
+        color: #ffffff;
+        text-shadow: 0px 2px 4px rgba(0,0,0,0.8); /* Ensures text is readable over the image */
+    }
+
+    /* Simple, traditional dropdowns */
+    .dropdown {
+        padding-bottom: 10px;
+        margin-bottom: -10px;
+    }
+
+    .dropdown-content {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: rgba(0, 16, 7, 0.95);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 8px;
+        padding: 0.5rem 0;
+        min-width: 160px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .dropdown:hover .dropdown-content {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-content a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    /* Center the main hero text */
     .hero-content {
-        margin-top: 0;
+        margin-top: 4rem; /* Accounts for the logo and nav at the top */
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        /* Position it in the absolute center of the viewport */
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        padding: 0 1.5rem;
     }
 
     .hero-title {
-        font-size: 2.8rem;
+        font-size: 2.6rem;
     }
 
     #dynamic-word {
-        font-size: 3.5rem;
+        font-size: 3.3rem;
     }
 
     #dynamic-word::after {
-        right: -1rem; /* Adjust blinking cursor */
+        right: -1rem; 
     }
 
     .hero-cta {
@@ -905,79 +971,7 @@ body.portfolio-cursor-active .cursor {
         transform: translateX(-50%);
     }
 
-    /* Navigation Bar styles */
-    .navbar {
-        padding: 1.5rem;
-        z-index: 100; /* High z-index to be on top and clickable */
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: auto; /* Only take space it needs */
-    }
-
-    .nav-container {
-        justify-content: flex-end;
-    }
-
-    /* Create the semi-transparent container for the nav links */
-    .nav-menu {
-        flex-direction: column;
-        gap: 0; /* Remove gap, use padding on items instead */
-        align-items: flex-end;
-        background: rgba(0,0,0,0.4);
-        padding: 1rem 1.5rem;
-        border-radius: 12px;
-        backdrop-filter: blur(8px);
-        list-style: none;
-    }
-    
-    /* Style all list items in the mobile nav */
-    .nav-menu li {
-      width: 100%;
-      text-align: right;
-    }
-
-    /* Style all links, including main links and dropdown links */
-    .nav-menu li a {
-      display: block; /* Make the full area clickable */
-      padding: 0.5rem 0;
-      font-size: 1rem;
-      text-decoration: none;
-      color: var(--text-primary);
-    }
-
-    /* Remove bottom border effect on mobile */
-    .nav-menu > li > a::after {
-        display: none;
-    }
-
-    /* Force dropdowns to behave as simple list items */
-    .dropdown {
-        padding-bottom: 0;
-        margin-bottom: 0;
-    }
-
-    /* Fully reset dropdown content to just be a simple container */
-    .dropdown-content {
-        visibility: visible;
-        opacity: 1;
-        position: static; /* CRITICAL: Takes it out of the absolute positioning flow */
-        transform: none;
-        background: transparent;
-        box-shadow: none;
-        border: none;
-        padding: 0;
-        min-width: unset;
-        width: 100%;
-    }
-
-    .dropdown-content a {
-        padding: 0.5rem 0 0.5rem 1rem; /* Indent sub-items */
-        font-size: 0.9rem; /* Make sub-items slightly smaller */
-        color: var(--text-secondary);
-    }
-
-    /* Disable all sticky stacking on mobile for a simpler scroll */
+    /* Disable all sticky stacking on mobile */
     .stack-section,
     #content-design,
     #photography,
@@ -989,7 +983,7 @@ body.portfolio-cursor-active .cursor {
         padding: 4rem 1.5rem;
     }
 
-    /* Fix Portfolio section for mobile views */
+    /* Fix Portfolio section */
     .card-stack-container {
         display: flex;
         flex-direction: column;
@@ -1000,7 +994,7 @@ body.portfolio-cursor-active .cursor {
     }
     
     .portfolio-card {
-        position: relative !important; /* Override sticky */
+        position: relative !important;
         top: auto !important;
         left: auto !important;
         right: auto !important;
@@ -1009,11 +1003,9 @@ body.portfolio-cursor-active .cursor {
         margin: 0;
     }
 
-    /* Make sure default cursor is always used on mobile */
     body, a { cursor: auto !important; }
     .cursor { display: none !important; }
     
-    /* Adjust pricing section for mobile */
     .pricing-container {
         padding: 4rem 1.5rem;
     }
