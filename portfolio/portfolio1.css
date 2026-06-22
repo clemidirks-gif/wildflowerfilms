@@ -47,18 +47,30 @@ body {
     object-fit: contain;
 }
 
-/* Custom Cursor */
+/* Custom Cursor with dynamic color inversion */
+/* Custom Cursor with dynamic color inversion */
 .custom-cursor {
     width: 20px;
     height: 20px;
-    border: 2px solid #111;
+    border: 2px solid #fff; /* Changed from #111 to #fff */
+    background-color: transparent;
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease-out, background-color 0.2s ease;
+    
+    /* This makes it black on light backgrounds, and white on dark backgrounds */
+    mix-blend-mode: difference; 
 }
+
+/* When hovering over buttons/links */
+.custom-cursor.hovering {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: #fff; /* Fills in the circle */
+}
+
 
 /* --- Navigation --- */
 .navbar {
@@ -446,8 +458,7 @@ body.invert-theme {
 body.invert-theme img,
 body.invert-theme .hero-visuals,
 body.invert-theme .day-night-overlay,
-body.invert-theme .visual-box,
-body.invert-theme .custom-cursor {
+body.invert-theme .visual-box {
     filter: invert(1) hue-rotate(180deg);
 }
 
