@@ -798,7 +798,7 @@ body.portfolio-cursor-active .cursor {
 
 
 /* ===============================
-   MOBILE ADJUSTMENTS (REVISED)
+   MOBILE ADJUSTMENTS (FINAL REVISION)
 =============================== */
 @media (max-width: 768px) {
     /* Base structure for fullscreen hero */
@@ -861,12 +861,22 @@ body.portfolio-cursor-active .cursor {
         left: 1.5rem;
         width: 50px;
         height: 50px;
+        z-index: 110; /* Ensure logo is above nav container */
     }
 
     /* Center the main text content vertically and horizontally */
     .hero-content {
         margin-top: 0;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* Position it in the absolute center of the viewport */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .hero-title {
@@ -898,7 +908,7 @@ body.portfolio-cursor-active .cursor {
     /* Navigation Bar styles */
     .navbar {
         padding: 1.5rem;
-        z-index: 20; /* Highest z-index to be on top and clickable */
+        z-index: 100; /* High z-index to be on top and clickable */
         position: absolute;
         top: 0;
         right: 0;
@@ -909,45 +919,62 @@ body.portfolio-cursor-active .cursor {
         justify-content: flex-end;
     }
 
+    /* Create the semi-transparent container for the nav links */
     .nav-menu {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0; /* Remove gap, use padding on items instead */
         align-items: flex-end;
         background: rgba(0,0,0,0.4);
         padding: 1rem 1.5rem;
         border-radius: 12px;
         backdrop-filter: blur(8px);
+        list-style: none;
     }
     
-    .nav-menu > li > a {
-        font-size: 1rem;
+    /* Style all list items in the mobile nav */
+    .nav-menu li {
+      width: 100%;
+      text-align: right;
     }
 
+    /* Style all links, including main links and dropdown links */
+    .nav-menu li a {
+      display: block; /* Make the full area clickable */
+      padding: 0.5rem 0;
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    /* Remove bottom border effect on mobile */
+    .nav-menu > li > a::after {
+        display: none;
+    }
+
+    /* Force dropdowns to behave as simple list items */
     .dropdown {
         padding-bottom: 0;
         margin-bottom: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
     }
 
+    /* Fully reset dropdown content to just be a simple container */
     .dropdown-content {
         visibility: visible;
         opacity: 1;
-        position: relative;
+        position: static; /* CRITICAL: Takes it out of the absolute positioning flow */
         transform: none;
         background: transparent;
         box-shadow: none;
         border: none;
-        padding: 0.5rem 0 0 0;
-        display: flex;
-        align-items: flex-end;
+        padding: 0;
         min-width: unset;
+        width: 100%;
     }
 
     .dropdown-content a {
-        padding: 0.4rem 0;
-        font-size: 0.9rem;
+        padding: 0.5rem 0 0.5rem 1rem; /* Indent sub-items */
+        font-size: 0.9rem; /* Make sub-items slightly smaller */
+        color: var(--text-secondary);
     }
 
     /* Disable all sticky stacking on mobile for a simpler scroll */
