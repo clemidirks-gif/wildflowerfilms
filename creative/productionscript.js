@@ -1,8 +1,7 @@
 // ====================================
-// NEW: MOBILE HAMBURGER MENU
+// NEW: MOBILE HAMBURGER MENU (ACCORDION)
 // ====================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Only run this on mobile-sized devices
     if (window.innerWidth <= 768) {
         const body = document.body;
 
@@ -16,30 +15,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileNav = document.createElement('div');
         mobileNav.className = 'mobile-nav-panel';
 
-        // 3. Find the original nav and copy its links into the new mobile panel
+        // 3. Find the original nav and copy its links
         const desktopNavMenu = document.querySelector('.nav-menu');
         if (desktopNavMenu) {
             mobileNav.innerHTML = desktopNavMenu.innerHTML;
         }
         body.appendChild(mobileNav);
 
-        // 4. Add click functionality to open/close the menu
+        // 4. Hamburger button click event
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileNav.classList.toggle('active');
-            body.classList.toggle('no-scroll'); // Optional: prevents scrolling when menu is open
+            body.classList.toggle('no-scroll'); 
         });
 
-        // 5. Close menu when a link is clicked
+        // 5. Handle link clicks (Accordion for dropdowns)
         mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileNav.classList.remove('active');
-                body.classList.remove('no-scroll');
+            link.addEventListener('click', (e) => {
+                const parentDropdown = link.closest('.dropdown');
+                const hasSubMenu = link.nextElementSibling && link.nextElementSibling.classList.contains('dropdown-content');
+
+                // If clicking a main link that has a dropdown, toggle it open/closed
+                if (parentDropdown && hasSubMenu) {
+                    e.preventDefault(); // Stop from jumping sections immediately
+                    parentDropdown.classList.toggle('open');
+                } else {
+                    // Regular links and sub-links: close the entire menu and scroll
+                    hamburger.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    body.classList.remove('no-scroll');
+                }
             });
         });
     }
 });
+
 
 console.log("Script loaded");
 console.log("THREE:", window.THREE);

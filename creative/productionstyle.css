@@ -801,189 +801,76 @@ body.portfolio-cursor-active .cursor {
    MOBILE ADJUSTMENTS (HAMBURGER MENU VERSION)
 =============================== */
 @media (max-width: 768px) {
-    /* Base structure for fullscreen hero */
-    .hero-grid {
-        grid-template-columns: 1fr;
-        height: 100vh;
-        position: relative;
-    }
-
-    /* Right column becomes the static background */
+    .hero-grid { grid-template-columns: 1fr; height: 100vh; position: relative; }
+    
     .hero-right {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        margin: 0; border-radius: 0;
-        z-index: 1;
-        background-image: url('images/bgCovers.webp');
-        background-size: cover;
-        background-position: center;
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; border-radius: 0; z-index: 1;
+        background-image: url('images/bgCovers.webp'); background-size: cover; background-position: center;
     }
 
     #fluid-canvas { display: none !important; }
     .hero-overlay { background: rgba(0, 16, 7, 0.5); }
 
-    /* Left column for content alignment */
     .hero-left {
-        min-height: 100vh;
-        width: 100%;
-        background: transparent;
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Center main content */
-        align-items: center;
-        text-align: center;
-        z-index: 5;
-        position: relative;
+        min-height: 100vh; width: 100%; background: transparent; padding: 1.5rem; display: flex; flex-direction: column; 
+        justify-content: center; align-items: center; text-align: center; z-index: 5; position: relative;
     }
 
-    /* Hide the original desktop navigation completely */
-    .navbar {
-        display: none !important;
-    }
-
-    /* Position Logo top-left */
-    .logo {
-        position: absolute;
-        top: 1.5rem;
-        left: 1.5rem;
-        width: 50px;
-        height: 50px;
-        z-index: 10;
-    }
-
-    /* Center the main hero text */
-    .hero-content {
-        margin-top: 0;
-        padding-bottom: 5rem; /* Add space to not overlap scroll indicator */
-    }
-
+    .navbar { display: none !important; } /* Hide old nav */
+    
+    .logo { position: absolute; top: 1.5rem; left: 1.5rem; width: 50px; height: 50px; z-index: 10; }
+    
+    .hero-content { margin-top: 0; padding-bottom: 5rem; }
     .hero-title { font-size: 2.6rem; }
     #dynamic-word { font-size: 3.3rem; }
     #dynamic-word::after { right: -1rem; }
     .hero-cta { margin-top: 2rem; }
+    
+    .scroll-indicator { margin-left: 0; width: auto; position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); }
 
-    /* Position scroll indicator at bottom center */
-    .scroll-indicator {
-        margin-left: 0;
-        width: auto;
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    /* STYLING FOR THE NEW HAMBURGER MENU */
+    /* STYLING FOR THE HAMBURGER BUTTON */
     .hamburger-menu {
-        position: fixed;
-        top: 1.5rem;
-        right: 1.5rem;
-        width: 30px;
-        height: 24px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        cursor: pointer;
-        z-index: 1001; /* Above everything */
+        position: fixed; top: 1.5rem; right: 1.5rem; width: 30px; height: 24px; display: flex; 
+        flex-direction: column; justify-content: space-between; cursor: pointer; z-index: 1001; 
     }
-
     .hamburger-menu span {
-        display: block;
-        height: 3px;
-        width: 100%;
-        background-color: #fff;
-        border-radius: 3px;
-        transition: all 0.3s ease-in-out;
+        display: block; height: 3px; width: 100%; background-color: #fff; border-radius: 3px; transition: all 0.3s ease-in-out;
     }
+    .hamburger-menu.active span:nth-child(1) { transform: translateY(10.5px) rotate(45deg); }
+    .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+    .hamburger-menu.active span:nth-child(3) { transform: translateY(-10.5px) rotate(-45deg); }
 
-    .hamburger-menu.active span:nth-child(1) {
-        transform: translateY(10px) rotate(45deg);
-    }
-    .hamburger-menu.active span:nth-child(2) {
-        opacity: 0;
-    }
-    .hamburger-menu.active span:nth-child(3) {
-        transform: translateY(-11px) rotate(-45deg);
-    }
-
-    /* STYLING FOR THE NEW MOBILE NAV PANEL */
+    /* STYLING FOR THE FULL-SCREEN MENU PANEL */
     .mobile-nav-panel {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 16, 7, 0.95);
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        list-style: none;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease-in-out;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 16, 7, 0.95); 
+        backdrop-filter: blur(10px); z-index: 1000; display: flex; flex-direction: column; align-items: center; 
+        justify-content: center; list-style: none; opacity: 0; pointer-events: none; transition: opacity 0.3s ease-in-out;
     }
+    .mobile-nav-panel.active { opacity: 1; pointer-events: auto; overflow-y: auto; }
+    body.no-scroll { overflow: hidden; }
 
-    .mobile-nav-panel.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
+    .mobile-nav-panel li { text-align: center; margin: 1.2rem 0; width: 100%; }
+    .mobile-nav-panel li a { color: #fff; font-size: 1.5rem; text-decoration: none; font-weight: 400; display: inline-block; }
     
-    body.no-scroll {
-        overflow: hidden;
-    }
-
-    /* Clean up the copied link styles */
-    .mobile-nav-panel li {
-        text-align: center;
-        margin: 1.5rem 0;
-    }
-    .mobile-nav-panel li a {
-        color: #fff;
-        font-size: 1.5rem;
-        text-decoration: none;
-        font-weight: 400;
-    }
+    /* ACCORDION EFFECT FOR DROPDOWNS */
     .mobile-nav-panel .dropdown-content {
-        all: unset; /* Reset all inherited dropdown styles */
-        list-style: none;
-        padding-top: 1rem;
+        display: none; /* Hidden by default */
+        flex-direction: column; list-style: none; padding-top: 1rem; gap: 1rem;
     }
-    .mobile-nav-panel .dropdown-content a {
-        font-size: 1.1rem;
-        color: #ccc;
-        font-weight: 300;
+    /* Shows only when the main link is tapped (handled by JS) */
+    .mobile-nav-panel .dropdown.open .dropdown-content {
+        display: flex; 
     }
+    /* Style the sub-links */
+    .mobile-nav-panel .dropdown-content a { font-size: 1.1rem; color: #b3b3b3; font-weight: 300; }
     
-    /* Disable all sticky stacking on mobile */
-    .stack-section, #content-design, #photography, #content-creation {
-        position: relative;
-        min-height: auto;
-        margin-bottom: 0 !important;
-        border-radius: 0;
-        padding: 4rem 1.5rem;
+    /* Remove stacking effects for mobile */
+    .stack-section, #content-design, #photography, #content-creation { 
+        position: relative; min-height: auto; margin-bottom: 0 !important; border-radius: 0; padding: 4rem 1.5rem; 
     }
 
-    /* Fix Portfolio section */
-    .card-stack-container {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        height: auto;
-        margin-top: 2rem;
-        width: 100%;
-    }
-    
-    .portfolio-card {
-        position: relative !important;
-        top: auto !important; left: auto !important; right: auto !important;
-        height: 320px;
-        width: 100%;
-        margin: 0;
-    }
+    .card-stack-container { display: flex; flex-direction: column; gap: 1.5rem; height: auto; margin-top: 2rem; width: 100%; }
+    .portfolio-card { position: relative !important; top: auto !important; left: auto !important; right: auto !important; height: 320px; width: 100%; margin: 0; }
 
     body, a { cursor: auto !important; }
     .cursor { display: none !important; }
