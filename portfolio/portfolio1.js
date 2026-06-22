@@ -16,6 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         el.addEventListener('mouseleave', () => {
             cursor.classList.remove('hovering');
+                // --- Turn cursor white over specific dark sections ---
+    // Selects your dark footer and the dark motion graphics card
+    const darkSections = document.querySelectorAll('.footer, .card-dark');
+    
+    darkSections.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('cursor-white');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('cursor-white');
+        });
+    });
+
         });
     });
 
@@ -71,6 +84,24 @@ document.addEventListener("DOMContentLoaded", () => {
         // Optional: Change text color in the hero dynamically based on darkness
         const heroText = document.querySelectorAll('.hero-content h1, .hero-content p');
         if (fadeProgress > 0.5) {
+                    // Optional: Change text color and cursor dynamically based on darkness
+        const heroText = document.querySelectorAll('.hero-content h1, .hero-content p');
+        if (fadeProgress > 0.5) {
+            heroText.forEach(el => el.style.color = '#ffffff');
+            document.querySelector('.navbar .logo').style.color = '#ffffff';
+            document.querySelectorAll('.navbar nav a').forEach(a => a.style.color = '#ffffff');
+            
+            // Turn cursor white when it's "night time"
+            cursor.classList.add('cursor-white'); 
+        } else {
+            heroText.forEach(el => el.style.color = ''); // reset to CSS default
+            document.querySelector('.navbar .logo').style.color = '';
+            document.querySelectorAll('.navbar nav a').forEach(a => a.style.color = '');
+            
+            // Return cursor to black when it's "day time"
+            cursor.classList.remove('cursor-white'); 
+        }
+
             heroText.forEach(el => el.style.color = '#ffffff');
             document.querySelector('.navbar .logo').style.color = '#ffffff';
             document.querySelectorAll('.navbar nav a').forEach(a => a.style.color = '#ffffff');
