@@ -287,3 +287,27 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===============================
 
 console.log("Wildflower Films portfolio loaded 🎬");
+
+// ===============================
+// HAMBURGER MENU TOGGLE
+// ===============================
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const mobileNavLinks = document.querySelectorAll('.nav-menu a');
+
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
+
+// Auto-close menu when a link is clicked
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (hamburger.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+});
