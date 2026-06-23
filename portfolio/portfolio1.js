@@ -11,10 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Single function to decide cursor color ---
     function updateCursorColor() {
         const isDarkMode = document.body.classList.contains('invert-theme');
-        const heroHeight = heroSection.offsetHeight;
         const scrollY = window.scrollY;
+        const heroHeight = heroSection.offsetHeight;
+        
+        // Is it "night time" in the hero section?
         const fadeProgress = Math.min(scrollY / (heroHeight * 0.8), 0.9);
-        const isNightSection = fadeProgress > 0.5;
+        
+        // --- THIS IS THE FIX ---
+        // Only consider it "night" if we are scrolled past the halfway point
+        // AND we are still inside the hero section's visible area.
+        const isNightSection = fadeProgress > 0.5 && scrollY < heroHeight;
 
         if (isDarkMode || isNightSection) {
             cursor.style.borderColor = '#fff';
@@ -52,8 +58,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Hovering over specific dark sections
     darkSections.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.style.borderColor = '#fff');
-        el.addEventListener('mouseleave', () => updateCursorColor());
+        el.addEventListener('mouseenter', () => {
+            // Force white, but only if not already white from a global rule
+            if (cursor.style.borderColor !== 'rgb(255, 255, 255)') {
+                 cursor.style.borderColor = '#fff';
+            }
+        });
+        el.addEventListener('mouseleave', () => {
+             // On mouse leave, re-evaluate the global state
+             updateCursorColor()
+        });
     });
 
     // 4. Dark Mode Toggle
@@ -86,19 +100,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Update Text and Cursor Color
-        const heroText = document.querySelectorAll('.hero-content h1, .hero-content p');
+        const heroText = document.querySelectorAll('.hero-content h1, .hero-content p, .navbar nav a');
         if (fadeProgress > 0.5) {
             heroText.forEach(el => el.style.color = '#ffffff');
-            document.querySelector('.navbar nav a').forEach(a => a.style.color = '#ffffff');
         } else {
             heroText.forEach(el => el.style.color = '');
-            document.querySelector('.navbar nav a').forEach(a => a.style.color = '');
         }
         
         updateCursorColor();
     });
 
-    // --- Animated Number Counter (No changes needed here) ---
+    // --- Animated Number Counter (No changes) ---
     const counters = document.querySelectorAll('.stat-number');
     const speed = 200;
     const observer = new IntersectionObserver((entries, observer) => {
