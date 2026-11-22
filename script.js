@@ -260,6 +260,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     message: message.value
                 }),
 
+/* ------------------------------------------------------ */
+
+                // 2. AUTO-REPLY TO CLIENT
+                emailjs.send("service_tdoof9d", "template_7cv8xqr", {
+                    to_email: email.value,
+                    from_name: "Wildflower Films",
+                    message: "Thanks for reaching out! We’ll get back to you shortly."
+                })
+
             ]);
 
             contactForm.reset();
