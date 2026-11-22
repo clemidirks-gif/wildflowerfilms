@@ -74,7 +74,7 @@ document.querySelectorAll('[data-scroll]').forEach((el, i) => {
 function bookPackage(name, price) {
     const modal = document.getElementById("bookingModal");
     document.getElementById("packageName").value = name;
-    document.getElementById("packagePrice").value = "R" + price.toLocaleString();
+    document.getElementById("packagePrice").value = "R" + price;
 
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
@@ -129,110 +129,138 @@ document.addEventListener("keydown", (e) => {
 });
 
 // ===============================
-// TOAST NOTIFICATION
+// SUCCESS POPUP
 // ===============================
-function showSuccessPopup(text = "Thanks! We’ll be in contact shortly.") {
+function showSuccessPopup() {
     const popup = document.createElement("div");
+
     popup.innerHTML = `
         <div style="
             position:fixed;
-            bottom:28px;
+            bottom:30px;
             left:50%;
             transform:translateX(-50%);
-            background:#f8f6f2;
-            color:#040906;
-            padding:14px 26px;
-            border-radius:999px;
-            font-family:'Rethink Sans',sans-serif;
+            background:#fff;
+            color:#000;
+            padding:15px 25px;
+            border-radius:50px;
             font-size:14px;
-            font-weight:500;
-            letter-spacing:0.02em;
             z-index:99999;
-            border:1px solid rgba(216,194,157,0.6);
-            box-shadow:0 16px 40px rgba(0,0,0,0.45);
+            box-shadow:0 10px 30px rgba(0,0,0,0.2);
         ">
-            ${text}
+            Thanks! We’ll be in contact shortly.
         </div>
     `;
+
     document.body.appendChild(popup);
-    setTimeout(() => popup.remove(), 4200);
+    setTimeout(() => popup.remove(), 4000);
 }
 
 // ===============================
-// EMAILJS - BOOKING FORM
+// EMAILJS - BOOKING FORM (ORIGINAL SETUP)
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
+
     const bookingForm = document.getElementById("bookingForm");
+
     if (!bookingForm) return;
 
     bookingForm.addEventListener("submit", async (e) => {
         e.preventDefault();
+
         const btn = bookingForm.querySelector("button[type='submit']");
         btn.innerText = "Sending...";
-        btn.disabled = true;
 
         try {
-            await emailjs.send("service_tdoof9d", "template_s9827wg", {
-                to_email: document.getElementById("email").value,
-                from_name: document.getElementById("fullName").value,
-                from_email: document.getElementById("email").value,
-                reply_to: document.getElementById("email").value,
-                phone: document.getElementById("phone").value,
-                package_name: document.getElementById("packageName").value,
-                price: document.getElementById("packagePrice").value,
-                wedding_date: document.getElementById("weddingDate").value,
-                location: document.getElementById("location").value,
-                requests: document.getElementById("requests").value || "None"
-            });
+            await Promise.all([
+                emailjs.send("service_tdoof9d", "template_s9827wg", {
+                    to_email: "info@wildflowerfilms.co.za",
+                    from_name: document.getElementById("fullName").value,
+                    from_email: document.getElementById("email").value,
+                    phone: document.getElementById("phone").value,
+                    package_name: document.getElementById("packageName").value,
+                    price: document.getElementById("packagePrice").value,
+                    wedding_date: document.getElementById("weddingDate").value,
+                    location: document.getElementById("location").value,
+                    requests: document.getElementById("requests").value || "None"
+                }),
+
+                emailjs.send("service_tdoof9d", "template_s9827wg", {
+                    to_email: document.getElementById("email").value,
+                    from_name: document.getElementById("fullName").value,
+                    package_name: document.getElementById("packageName").value
+                })
+            ]);
 
             bookingForm.reset();
             closeBooking();
-            showSuccessPopup("Booking request sent! We’ll be in touch shortly.");
+            showSuccessPopup();
+
         } catch (err) {
             console.error(err);
             alert("Something went wrong. Please try again.");
-        } finally {
-            btn.innerText = "Confirm Booking Request";
-            btn.disabled = false;
         }
+
+        btn.innerText = "Confirm Booking Request";
     });
 });
 
 // ===============================
-// EMAILJS - CONTACT FORM
+// EMAILJS - CONTACT FORM (ORIGINAL SETUP)
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
+
     const contactForm = document.getElementById("contactForm");
+
     if (!contactForm) return;
 
     contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
+
         const btn = contactForm.querySelector("button[type='submit']");
         btn.innerText = "Sending...";
-        btn.disabled = true;
 
         const name = document.getElementById("contactName");
         const email = document.getElementById("contactEmail");
         const message = document.getElementById("contactMessage");
 
+        if (!name || !email || !message) {
+            console.error("Missing contact form fields");
+            alert("Form error: missing fields.");
+            btn.innerText = "Send Message";
+            return;
+        }
+
         try {
-            await emailjs.send("service_tdoof9d", "template_7cv8xqr", {
-                to_email: email.value,
-                from_name: name.value,
-                from_email: email.value,
-                reply_to: email.value,
-                message: message.value
-            });
+
+            await Promise.all([
+
+                // 1. SEND TO YOU (business email)
+                emailjs.send("service_tdoof9d", "template_s9827wg", {
+                    to_email: "info@wildflowerfilms.co.za",
+                    from_name: name.value,
+                    from_email: email.value,
+                    message: message.value
+                }),
+
+                // 2. AUTO-REPLY TO CLIENT
+                emailjs.send("service_tdoof9d", "template_7cv8xqr", {
+                    to_email: email.value,
+                    from_name: "Wildflower Films",
+                    message: "Thanks for reaching out! We’ll get back to you shortly."
+                })
+
+            ]);
 
             contactForm.reset();
-            showSuccessPopup("Message sent! We’ll reply to you shortly.");
+            showSuccessPopup();
+
         } catch (err) {
             console.error(err);
             alert("Something went wrong. Please try again.");
-        } finally {
-            btn.innerText = "Send Message";
-            btn.disabled = false;
         }
+
+        btn.innerText = "Send Message";
     });
 });
 
