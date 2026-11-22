@@ -253,21 +253,12 @@ document.addEventListener("DOMContentLoaded", () => {
             await Promise.all([
 
                 // 1. SEND TO YOU (business email)
-                emailjs.send("service_tdoof9d", "template_7cv8xqr", {
+                emailjs.send("service_tdoof9d", "template_s9827wg", {
                     to_email: "info@wildflowerfilms.co.za",
                     from_name: name.value,
                     from_email: email.value,
                     message: message.value
                 }),
-
-/* ------------------------------------------------------ */
-
-                // 2. AUTO-REPLY TO CLIENT
-                emailjs.send("service_tdoof9d", "template_7cv8xqr", {
-                    to_email: email.value,
-                    from_name: "Wildflower Films",
-                    message: "Thanks for reaching out! We’ll get back to you shortly."
-                })
 
             ]);
 

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wildflower Films — Wedding Story &amp; Day-Of Checklist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ==========================================================================
+       WILDFLOWER FILMS — BRAND DESIGN TOKENS
+       (Matches styles.css root tokens for easy customization)
+       ========================================================================== */
+    :root {
+      --bg-primary: #FAF7F2;
+      --bg-secondary: #F3EDE4;
+      --bg-card: #FFFFFF;
+      --text-primary: #2C2926;
+      --text-secondary: #686058;
+      --text-muted: #93897F;
+      --accent-primary: #8C6249;     /* Warm Terracotta / Clay */
+      --accent-secondary: #6E7B68;   /* Botanical Sage */
+      --accent-hover: #724E39;
+      --border-light: #E6DDD1;
+      --border-focus: #8C6249;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --shadow-soft: 0 12px 35px rgba(44, 41, 38, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle Progress Bar */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--bg-secondary);
+      z-index: 100;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+      transition: width 0.3s ease;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 4.5rem 1.5rem 2.5rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .botanical-mark {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 1rem;
+      color: var(--accent-secondary);
+    }
+
+    .brand-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      font-weight: 600;
+      margin-bottom: 0.65rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.1rem, 4.5vw, 3rem);
+      font-weight: 500;
+      line-height: 1.18;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .intro-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 780px;
+      margin: 0 auto 5rem;
+      padding: 0 1.25rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 2.25rem 2rem;
+      margin-bottom: 1.75rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-header {
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .section-number {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--accent-primary);
+      margin-right: 0.45rem;
+    }
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .section-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Grid & Inputs */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .field {
+      margin-bottom: 1.25rem;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 0.45rem;
+    }
+
+    .prefilled-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--bg-secondary);
+      color: var(--accent-primary);
+      padding: 0.12rem 0.45rem;
+      border-radius: 3px;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="time"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.78rem 0.95rem;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      background-color: #FFFFFF;
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    /* Interactive Checklist Items */
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.75rem 0.85rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .check-item:hover {
+      border-color: var(--accent-primary);
+    }
+
+    .check-item input[type="checkbox"] {
+      accent-color: var(--accent-primary);
+      width: 17px;
+      height: 17px;
+      margin-top: 0.15rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .check-item.checked {
+      background: #F6EFE7;
+      border-color: var(--accent-primary);
+    }
+
+    .check-text {
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .check-sub {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    /* Submit Button */
+    .submit-wrap {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .btn-submit {
+      background-color: var(--accent-primary);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 1.05rem 2.6rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.15s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .privacy-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.85rem;
+    }
+
+    /* Thank You State */
+    .thank-you-card {
+      display: none;
+      text-align: center;
+      padding: 3.5rem 2rem;
+    }
+
+    .thank-you-card h2 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .summary-box {
+      text-align: left;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      margin: 1.5rem auto;
+      max-width: 560px;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      color: var(--text-secondary);
+    }
+
+    .btn-copy {
+      background: transparent;
+      border: 1px solid var(--accent-primary);
+      color: var(--accent-primary);
+      padding: 0.65rem 1.35rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary);
+      color: #FFF;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .grid-2,
+      .checklist-grid {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 1.6rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+
+  <header>
+    <svg class="botanical-mark" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M32 56V14" />
+      <path d="M32 22C24 22 19 16 19 10C25 10 32 15 32 22Z" />
+      <path d="M32 28C40 28 45 22 45 16C39 16 32 21 32 28Z" />
+      <path d="M32 38C22 38 16 31 16 24C23 24 32 30 32 38Z" />
+      <path d="M32 44C42 44 48 37 48 30C41 30 32 36 32 44Z" />
+    </svg>
+    <div class="brand-eyebrow">Wildflower Films</div>
+    <h1>Your Wedding Story &amp; Day-Of Checklist</h1>
+    <p class="intro-text">
+      We believe in capturing the most beautiful, unscripted moments and crafting timeless love stories you can hold on to forever. We've pre-filled what we already know from your enquiry—feel free to update anything and share the moments that matter most to you.
+    </p>
+  </header>
+
+  <main>
+    <form name="wedding-checklist" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="weddingForm">
+      <input type="hidden" name="form-name" value="wedding-checklist" />
+      <p class="hidden">
+        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+
+      <!-- SECTION 1: THE ESSENTIALS -->
+      <section class="card">
+        <div class="section-header">
+          <div><span class="section-number">01.</span><h2>The Essentials</h2></div>
+          <span class="section-hint">Pre-filled &amp; editable</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="field-label" for="partner1">Partner 1 Full Name <span class="prefilled-badge">Pre-filled</span></label>
+            <input type="text" id="partner1" name="partner_1" value="Cabby Cook" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="partner2">Partner 2 Full Name</label>
+            <input type="text" id="partner2" name="partner_2" placeholder="Partner's full name" required />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="field-label" for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="phone">WhatsApp / Contact Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+27 00 000 0000" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="field-label" for="weddingDate">Wedding Date <span class="prefilled-badge">Pre-filled</span></label>
+            <input type="date" id="weddingDate" name="wedding_date" value="2027-07-27" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="guestCount">Approximate Guest Count <span class="prefilled-badge">Pre-filled</span></label>
+            <input type="text" id="guestCount" name="guest_count" value="~40 guests (intimate celebration)" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="venue">Venue &amp; Locations <span class="prefilled-badge">Pre-filled</span></label>
+          <input type="text" id="venue" name="venue" value="Goedgeleven, Durbanville, Cape Town" required />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="packageSelected">Selected Package &amp; Coverage <span class="prefilled-badge">Pre-filled</span></label>
+          <input type="text" id="packageSelected" name="package_selected" value="Cinematic Package (Full Day: Getting Ready through Reception — Travel Included)" />
+        </div>
+      </section>
+
+      <!-- SECTION 2: YOUR LOVE STORY -->
+      <section class="card">
+        <div class="section-header">
+          <div><span class="section-number">02.</span><h2>Your Love Story</h2></div>
+          <span class="section-hint">Helps us shape your film's narrative</span>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="howWeMet">How did you two meet, and how did the proposal happen?</label>
+          <textarea id="howWeMet" name="love_story" placeholder="Share a few sentences about your journey together—even small funny or sweet details help us tell your story authentically..."></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="filmVibe">What feeling or mood do you want your wedding film to evoke?</label>
+          <textarea id="filmVibe" name="film_vibe" placeholder="e.g., Warm, romantic, emotional, intimate, joyful, nostalgic—and any songs or styles you love..."></textarea>
+        </div>
+      </section>
+
+      <!-- SECTION 3: DAY-OF COVERAGE CHECKLIST -->
+      <section class="card">
+        <div class="section-header">
+          <div><span class="section-number">03.</span><h2>Day-Of Coverage Checklist</h2></div>
+          <span class="section-hint">Tick all moments you'd love captured</span>
+        </div>
+
+        <div class="checklist-grid">
+          <label class="check-item checked">
+            <input type="checkbox" name="moments[]" value="Bridal & Groom Prep" checked />
+            <span class="check-text">Getting Ready &amp; Details<span class="check-sub">Rings, dress, suit, perfume, stationery</span></span>
+          </label>
+
+          <label class="check-item checked">
+            <input type="checkbox" name="moments[]" value="Letters or Gifts Exchange" checked />
+            <span class="check-text">Letters or Gifts Exchange<span class="check-sub">Reading handwritten notes before the aisle</span></span>
+          </label>
+
+          <label class="check-item">
+            <input type="checkbox" name="moments[]" value="First Look (Couple or Parent)" />
+            <span class="check-text">First Look<span class="check-sub">Private reveal with partner or parent</span></span>
+          </label>
+
+          <label class="check-item checked">
+            <input type="checkbox" name="moments[]" value="Ceremony & Personal Vows" checked />
+            <span class="check-text">Ceremony &amp; Vows<span class="check-sub">Full audio capture of vows &amp; ring exchange</span></span>
+          </label>
+
+          <label class="check-item checked">
+            <input type="checkbox" name="moments[]" value="Golden Hour Couple Portraits" checked />
+            <span class="check-text">Golden Hour Portraits<span class="check-sub">Romantic sunset session on the grounds</span></span>
+          </label>
+
+          <label class="check-item checked">
+            <input type="checkbox" name="moments[]" value="Candid Guest Moments" checked />
+            <span class="check-text">Candid Family &amp; Friends<span class="check-sub">Hugs, laughter, cocktail hour mingling</span></span>
+          </label>
+
+          <label class="check-item checked">
+            <input type="checkbox" name="moments[]" value="Reception Speeches & Toasts" checked />
+            <span class="check-text">Speeches &amp; Toasts<span class="check-sub">Clear audio of every heartfelt speech</span></span>
+          </label>
+
+          <label class="check-item checked">
+            <input type="checkbox" name="moments[]" value="First Dance & Evening Celebrations" checked />
+            <span class="check-text">First Dance &amp; Reception<span class="check-sub">First dance, parent dances &amp; cake cutting</span></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- SECTION 4: TIMELINE & SPECIAL NOTES -->
+      <section class="card">
+        <div class="section-header">
+          <div><span class="section-number">04.</span><h2>Timeline &amp; Special Details</h2></div>
+          <span class="section-hint">Rough estimates are completely fine</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="field-label" for="prepTime">Prep Start Time &amp; Location</label>
+            <input type="text" id="prepTime" name="prep_time" placeholder="e.g., 11:30 AM at Goedgeleven bridal suite" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="ceremonyTime">Ceremony Start Time</label>
+            <input type="text" id="ceremonyTime" name="ceremony_time" placeholder="e.g., 3:30 PM" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="field-label" for="receptionTime">Reception &amp; Speeches Time</label>
+            <input type="text" id="receptionTime" name="reception_time" placeholder="e.g., 6:00 PM" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="photographer">Your Wedding Photographer</label>
+            <input type="text" id="photographer" name="photographer" placeholder="Name or Instagram handle (so we can team up!)" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="specialNotes">Anything else we should know?</label>
+          <textarea id="specialNotes" name="special_notes" placeholder="Surprises planned, family dynamics to keep in mind, sentimental heirlooms, or special traditions..."></textarea>
+        </div>
+
+        <div class="submit-wrap">
+          <button type="submit" class="btn-submit">Send to Wildflower Films</button>
+          <p class="privacy-note">Your answers are sent directly to Wildflower Films to prepare for your day.</p>
+        </div>
+      </section>
+    </form>
+
+    <!-- THANK YOU / CONFIRMATION VIEW -->
+    <section class="card thank-you-card" id="thankYouCard">
+      <div class="brand-eyebrow">Thank You</div>
+      <h2>We Can't Wait to Tell Your Story</h2>
+      <p class="intro-text">
+        Your wedding story and day-of checklist have been received by Wildflower Films. Keep a copy of your summary below for your own planning records:
+      </p>
+      <div class="summary-box" id="summaryOutput"></div>
+      <button type="button" class="btn-copy" id="copySummaryBtn">Copy Summary</button>
+    </section>
+  </main>
+
+  <script>
+    // Optional EmailJS config (from your EMAILJS_SETUP.md if you also want EmailJS delivery)
+    const EMAILJS_CONFIG = {
+      ENABLED: false,
+      PUBLIC_KEY: "",
+      SERVICE_ID: "",
+      TEMPLATE_ID: ""
+    };
+
+    const form = document.getElementById('weddingForm');
+    const progressBar = document.getElementById('progressBar');
+    const thankYouCard = document.getElementById('thankYouCard');
+    const summaryOutput = document.getElementById('summaryOutput');
+    const copySummaryBtn = document.getElementById('copySummaryBtn');
+
+    // Highlight checked cards
+    document.querySelectorAll('.check-item input[type="checkbox"]').forEach((box) => {
+      box.addEventListener('change', () => {
+        box.closest('.check-item').classList.toggle('checked', box.checked);
+        updateProgress();
+      });
+    });
+
+    // Update top progress indicator
+    function updateProgress() {
+      const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea');
+      let filled = 0;
+      inputs.forEach((el) => {
+        if (el.value.trim().length > 0) filled++;
+      });
+      const pct = Math.min(100, Math.round((filled / inputs.length) * 100));
+      progressBar.style.width = pct + '%';
+    }
+
+    form.addEventListener('input', updateProgress);
+    updateProgress();
+
+    // Build clean plain-text summary
+    function buildSummary(formData) {
+      const moments = formData.getAll('moments[]');
+      return [
+        `COUPLE: ${formData.get('partner_1') || ''} & ${formData.get('partner_2') || ''}`,
+        `EMAIL: ${formData.get('email') || ''} | PHONE: ${formData.get('phone') || 'N/A'}`,
+        `DATE: ${formData.get('wedding_date') || ''} | GUESTS: ${formData.get('guest_count') || 'N/A'}`,
+        `VENUE: ${formData.get('venue') || ''}`,
+        `PACKAGE: ${formData.get('package_selected') || ''}`,
+        `\nMUST-CAPTURE MOMENTS:\n- ${moments.length ? moments.join('\n- ') : 'None selected'}`,
+        `\nTIMELINE:\n- Prep: ${formData.get('prep_time') || 'TBD'}\n- Ceremony: ${formData.get('ceremony_time') || 'TBD'}\n- Reception: ${formData.get('reception_time') || 'TBD'}\n- Photographer: ${formData.get('photographer') || 'TBD'}`,
+        `\nLOVE STORY:\n${formData.get('love_story') || '—'}`,
+        `\nFILM MOOD / VIBE:\n${formData.get('film_vibe') || '—'}`,
+        `\nSPECIAL NOTES:\n${formData.get('special_notes') || '—'}`
+      ].join('\n');
+    }
+
+    // Handle Netlify AJAX Form Submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const summaryText = buildSummary(formData);
+
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+      } catch (err) {
+        console.warn('Local preview mode or network notice:', err);
+      }
+
+      form.style.display = 'none';
+      summaryOutput.textContent = summaryText;
+      thankYouCard.style.display = 'block';
+      progressBar.style.width = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    copySummaryBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(summaryOutput.textContent);
+      copySummaryBtn.textContent = 'Copied to Clipboard';
+      setTimeout(() => (copySummaryBtn.textContent = 'Copy Summary'), 2500);
+    });
+  </script>
+</body>
+</html>
